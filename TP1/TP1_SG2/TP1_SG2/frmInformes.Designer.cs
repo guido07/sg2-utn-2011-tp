@@ -38,9 +38,7 @@
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabVenta = new System.Windows.Forms.TabPage();
-            this.btnGraficar1 = new System.Windows.Forms.Button();
             this.tabRegiones = new System.Windows.Forms.TabPage();
-            this.btnGraficar2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,7 +49,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabVendedores = new System.Windows.Forms.TabPage();
             this.antiguedad = new System.Windows.Forms.NumericUpDown();
-            this.btnGraficar3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.reportViewer3 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.label10 = new System.Windows.Forms.Label();
@@ -79,7 +76,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 56);
+            this.label2.Location = new System.Drawing.Point(40, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 16);
             this.label2.TabIndex = 1;
@@ -88,7 +85,7 @@
             // cbTipoBebida
             // 
             this.cbTipoBebida.FormattingEnabled = true;
-            this.cbTipoBebida.Location = new System.Drawing.Point(119, 55);
+            this.cbTipoBebida.Location = new System.Drawing.Point(144, 55);
             this.cbTipoBebida.Name = "cbTipoBebida";
             this.cbTipoBebida.Size = new System.Drawing.Size(121, 21);
             this.cbTipoBebida.TabIndex = 2;
@@ -97,7 +94,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(267, 56);
+            this.label3.Location = new System.Drawing.Point(333, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 16);
             this.label3.TabIndex = 3;
@@ -107,7 +104,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(450, 56);
+            this.label4.Location = new System.Drawing.Point(536, 56);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 4;
@@ -115,7 +112,7 @@
             // 
             // txtFechaDesde
             // 
-            this.txtFechaDesde.Location = new System.Drawing.Point(322, 55);
+            this.txtFechaDesde.Location = new System.Drawing.Point(388, 55);
             this.txtFechaDesde.Name = "txtFechaDesde";
             this.txtFechaDesde.ReadOnly = true;
             this.txtFechaDesde.Size = new System.Drawing.Size(100, 20);
@@ -124,7 +121,7 @@
             // 
             // txtFechaHasta
             // 
-            this.txtFechaHasta.Location = new System.Drawing.Point(500, 55);
+            this.txtFechaHasta.Location = new System.Drawing.Point(586, 55);
             this.txtFechaHasta.Name = "txtFechaHasta";
             this.txtFechaHasta.ReadOnly = true;
             this.txtFechaHasta.Size = new System.Drawing.Size(100, 20);
@@ -163,7 +160,6 @@
             // 
             // tabVenta
             // 
-            this.tabVenta.Controls.Add(this.btnGraficar1);
             this.tabVenta.Controls.Add(this.label2);
             this.tabVenta.Controls.Add(this.reportViewer1);
             this.tabVenta.Controls.Add(this.label1);
@@ -180,19 +176,8 @@
             this.tabVenta.Text = "Ventas";
             this.tabVenta.UseVisualStyleBackColor = true;
             // 
-            // btnGraficar1
-            // 
-            this.btnGraficar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGraficar1.Location = new System.Drawing.Point(646, 49);
-            this.btnGraficar1.Name = "btnGraficar1";
-            this.btnGraficar1.Size = new System.Drawing.Size(97, 27);
-            this.btnGraficar1.TabIndex = 8;
-            this.btnGraficar1.Text = "Graficar";
-            this.btnGraficar1.UseVisualStyleBackColor = true;
-            // 
             // tabRegiones
             // 
-            this.tabRegiones.Controls.Add(this.btnGraficar2);
             this.tabRegiones.Controls.Add(this.label5);
             this.tabRegiones.Controls.Add(this.reportViewer2);
             this.tabRegiones.Controls.Add(this.label6);
@@ -209,21 +194,11 @@
             this.tabRegiones.Text = "Regiones";
             this.tabRegiones.UseVisualStyleBackColor = true;
             // 
-            // btnGraficar2
-            // 
-            this.btnGraficar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGraficar2.Location = new System.Drawing.Point(645, 46);
-            this.btnGraficar2.Name = "btnGraficar2";
-            this.btnGraficar2.Size = new System.Drawing.Size(97, 27);
-            this.btnGraficar2.TabIndex = 17;
-            this.btnGraficar2.Text = "Graficar";
-            this.btnGraficar2.UseVisualStyleBackColor = true;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 43);
+            this.label5.Location = new System.Drawing.Point(89, 43);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 32);
             this.label5.TabIndex = 10;
@@ -262,7 +237,7 @@
             // 
             // txtHasta
             // 
-            this.txtHasta.Location = new System.Drawing.Point(499, 52);
+            this.txtHasta.Location = new System.Drawing.Point(560, 52);
             this.txtHasta.Name = "txtHasta";
             this.txtHasta.ReadOnly = true;
             this.txtHasta.Size = new System.Drawing.Size(100, 20);
@@ -272,14 +247,14 @@
             // cbRegion
             // 
             this.cbRegion.FormattingEnabled = true;
-            this.cbRegion.Location = new System.Drawing.Point(118, 52);
+            this.cbRegion.Location = new System.Drawing.Point(179, 52);
             this.cbRegion.Name = "cbRegion";
             this.cbRegion.Size = new System.Drawing.Size(121, 21);
             this.cbRegion.TabIndex = 11;
             // 
             // txtDesde
             // 
-            this.txtDesde.Location = new System.Drawing.Point(321, 52);
+            this.txtDesde.Location = new System.Drawing.Point(382, 52);
             this.txtDesde.Name = "txtDesde";
             this.txtDesde.ReadOnly = true;
             this.txtDesde.Size = new System.Drawing.Size(100, 20);
@@ -290,7 +265,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(266, 53);
+            this.label7.Location = new System.Drawing.Point(327, 53);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 16);
             this.label7.TabIndex = 12;
@@ -300,7 +275,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(449, 53);
+            this.label8.Location = new System.Drawing.Point(510, 53);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 16);
             this.label8.TabIndex = 13;
@@ -309,7 +284,6 @@
             // tabVendedores
             // 
             this.tabVendedores.Controls.Add(this.antiguedad);
-            this.tabVendedores.Controls.Add(this.btnGraficar3);
             this.tabVendedores.Controls.Add(this.label9);
             this.tabVendedores.Controls.Add(this.reportViewer3);
             this.tabVendedores.Controls.Add(this.label10);
@@ -325,27 +299,27 @@
             // 
             // antiguedad
             // 
-            this.antiguedad.Location = new System.Drawing.Point(155, 53);
+            this.antiguedad.Location = new System.Drawing.Point(264, 53);
+            this.antiguedad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.antiguedad.Name = "antiguedad";
             this.antiguedad.Size = new System.Drawing.Size(83, 20);
             this.antiguedad.TabIndex = 24;
             this.antiguedad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnGraficar3
-            // 
-            this.btnGraficar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGraficar3.Location = new System.Drawing.Point(645, 46);
-            this.btnGraficar3.Name = "btnGraficar3";
-            this.btnGraficar3.Size = new System.Drawing.Size(97, 27);
-            this.btnGraficar3.TabIndex = 23;
-            this.btnGraficar3.Text = "Graficar";
-            this.btnGraficar3.UseVisualStyleBackColor = true;
+            this.antiguedad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(21, 53);
+            this.label9.Location = new System.Drawing.Point(130, 53);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 16);
             this.label9.TabIndex = 19;
@@ -384,7 +358,7 @@
             // 
             // txtAño
             // 
-            this.txtAño.Location = new System.Drawing.Point(396, 52);
+            this.txtAño.Location = new System.Drawing.Point(505, 52);
             this.txtAño.Name = "txtAño";
             this.txtAño.ReadOnly = true;
             this.txtAño.Size = new System.Drawing.Size(100, 20);
@@ -395,7 +369,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(360, 53);
+            this.label11.Location = new System.Drawing.Point(469, 53);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 16);
             this.label11.TabIndex = 20;
@@ -435,8 +409,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabVenta;
         private System.Windows.Forms.TabPage tabRegiones;
-        private System.Windows.Forms.Button btnGraficar1;
-        private System.Windows.Forms.Button btnGraficar2;
         private System.Windows.Forms.Label label5;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
         private System.Windows.Forms.Label label6;
@@ -447,7 +419,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabPage tabVendedores;
         private System.Windows.Forms.NumericUpDown antiguedad;
-        private System.Windows.Forms.Button btnGraficar3;
         private System.Windows.Forms.Label label9;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer3;
         private System.Windows.Forms.Label label10;
