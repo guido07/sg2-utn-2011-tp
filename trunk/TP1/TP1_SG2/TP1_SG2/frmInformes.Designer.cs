@@ -120,6 +120,7 @@
             this.txtFechaDesde.ReadOnly = true;
             this.txtFechaDesde.Size = new System.Drawing.Size(100, 20);
             this.txtFechaDesde.TabIndex = 5;
+            this.txtFechaDesde.Text = "01/01/2006";
             // 
             // txtFechaHasta
             // 
@@ -128,6 +129,7 @@
             this.txtFechaHasta.ReadOnly = true;
             this.txtFechaHasta.Size = new System.Drawing.Size(100, 20);
             this.txtFechaHasta.TabIndex = 6;
+            this.txtFechaHasta.Text = "31/08/2009";
             // 
             // reportViewer1
             // 
@@ -230,6 +232,7 @@
             // 
             // reportViewer2
             // 
+            this.reportViewer2.LocalReport.ReportEmbeddedResource = "TP1_SG2.Informe_Regiones.rdlc";
             this.reportViewer2.Location = new System.Drawing.Point(6, 81);
             this.reportViewer2.Name = "reportViewer2";
             this.reportViewer2.ShowBackButton = false;
@@ -264,6 +267,7 @@
             this.txtHasta.ReadOnly = true;
             this.txtHasta.Size = new System.Drawing.Size(100, 20);
             this.txtHasta.TabIndex = 15;
+            this.txtHasta.Text = "2008";
             // 
             // cbRegion
             // 
@@ -280,6 +284,7 @@
             this.txtDesde.ReadOnly = true;
             this.txtDesde.Size = new System.Drawing.Size(100, 20);
             this.txtDesde.TabIndex = 14;
+            this.txtDesde.Text = "2006";
             // 
             // label7
             // 
@@ -349,6 +354,7 @@
             // 
             // reportViewer3
             // 
+            this.reportViewer3.LocalReport.ReportEmbeddedResource = "TP1_SG2.Informe_Vendedores.rdlc";
             this.reportViewer3.Location = new System.Drawing.Point(6, 81);
             this.reportViewer3.Name = "reportViewer3";
             this.reportViewer3.ShowBackButton = false;
@@ -378,17 +384,18 @@
             // 
             // txtAño
             // 
-            this.txtAño.Location = new System.Drawing.Point(402, 52);
+            this.txtAño.Location = new System.Drawing.Point(396, 52);
             this.txtAño.Name = "txtAño";
             this.txtAño.ReadOnly = true;
             this.txtAño.Size = new System.Drawing.Size(100, 20);
             this.txtAño.TabIndex = 21;
+            this.txtAño.Text = "2009";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(347, 53);
+            this.label11.Location = new System.Drawing.Point(360, 53);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 16);
             this.label11.TabIndex = 20;

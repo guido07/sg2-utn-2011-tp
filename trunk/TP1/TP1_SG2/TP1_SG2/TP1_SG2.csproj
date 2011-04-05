@@ -58,6 +58,8 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Informe_Ventas.rdlc" />
+    <EmbeddedResource Include="Informe_Regiones.rdlc" />
+    <EmbeddedResource Include="Informe_Vendedores.rdlc" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
