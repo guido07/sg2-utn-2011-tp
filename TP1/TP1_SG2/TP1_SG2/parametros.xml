@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<conexion>
+
+  <servidor>VAIO</servidor>
+
+  <puerto>3306</puerto>
+
+  <database>TDC history Sales</database>
+
+  <usuario></usuario>
+
+  <pass></pass>
+
+</conexion>

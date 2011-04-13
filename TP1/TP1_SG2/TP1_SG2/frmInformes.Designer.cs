@@ -89,6 +89,7 @@
             this.cbTipoBebida.Name = "cbTipoBebida";
             this.cbTipoBebida.Size = new System.Drawing.Size(121, 21);
             this.cbTipoBebida.TabIndex = 2;
+            this.cbTipoBebida.SelectedValueChanged += new System.EventHandler(this.cbTipoBebida_SelectedValueChanged);
             // 
             // label3
             // 
