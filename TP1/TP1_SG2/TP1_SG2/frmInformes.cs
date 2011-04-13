@@ -22,7 +22,8 @@ namespace TP1_SG2
 
             this.reportViewer1.RefreshReport();
 
-            cbTipoBebida.DataSource = AccesoDatos.buscaProductos();
+            cbTipoBebida.DataSource = AccesoDatos.buscaProductos();            
+
         }
 
         private void cbTipoBebida_SelectedValueChanged(object sender, EventArgs e)
@@ -36,5 +37,8 @@ namespace TP1_SG2
             reportViewer1.RefreshReport();
 
         }
+
+        
+
     }
 }

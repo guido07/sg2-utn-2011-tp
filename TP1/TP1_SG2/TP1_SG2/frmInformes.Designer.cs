@@ -35,7 +35,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtFechaDesde = new System.Windows.Forms.TextBox();
             this.txtFechaHasta = new System.Windows.Forms.TextBox();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabVenta = new System.Windows.Forms.TabPage();
             this.tabRegiones = new System.Windows.Forms.TabPage();
@@ -54,6 +53,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtAño = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabControl.SuspendLayout();
             this.tabVenta.SuspendLayout();
             this.tabRegiones.SuspendLayout();
@@ -128,25 +128,6 @@
             this.txtFechaHasta.Size = new System.Drawing.Size(100, 20);
             this.txtFechaHasta.TabIndex = 6;
             this.txtFechaHasta.Text = "31/08/2009";
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "TP1_SG2.Informe_Ventas.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(7, 84);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ShowBackButton = false;
-            this.reportViewer1.ShowContextMenu = false;
-            this.reportViewer1.ShowCredentialPrompts = false;
-            this.reportViewer1.ShowDocumentMapButton = false;
-            this.reportViewer1.ShowExportButton = false;
-            this.reportViewer1.ShowFindControls = false;
-            this.reportViewer1.ShowParameterPrompts = false;
-            this.reportViewer1.ShowPrintButton = false;
-            this.reportViewer1.ShowRefreshButton = false;
-            this.reportViewer1.ShowStopButton = false;
-            this.reportViewer1.ShowZoomControl = false;
-            this.reportViewer1.Size = new System.Drawing.Size(760, 406);
-            this.reportViewer1.TabIndex = 7;
             // 
             // tabControl
             // 
@@ -376,6 +357,25 @@
             this.label11.TabIndex = 20;
             this.label11.Text = "Año";
             // 
+            // reportViewer1
+            // 
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "TP1_SG2.Informe_Ventas.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(7, 84);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ShowBackButton = false;
+            this.reportViewer1.ShowContextMenu = false;
+            this.reportViewer1.ShowCredentialPrompts = false;
+            this.reportViewer1.ShowDocumentMapButton = false;
+            this.reportViewer1.ShowExportButton = false;
+            this.reportViewer1.ShowFindControls = false;
+            this.reportViewer1.ShowParameterPrompts = false;
+            this.reportViewer1.ShowPrintButton = false;
+            this.reportViewer1.ShowRefreshButton = false;
+            this.reportViewer1.ShowStopButton = false;
+            this.reportViewer1.ShowZoomControl = false;
+            this.reportViewer1.Size = new System.Drawing.Size(760, 406);
+            this.reportViewer1.TabIndex = 7;
+            // 
             // frmInformes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,7 +406,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtFechaDesde;
         private System.Windows.Forms.TextBox txtFechaHasta;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabVenta;
         private System.Windows.Forms.TabPage tabRegiones;
@@ -425,6 +424,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtAño;
         private System.Windows.Forms.Label label11;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
 

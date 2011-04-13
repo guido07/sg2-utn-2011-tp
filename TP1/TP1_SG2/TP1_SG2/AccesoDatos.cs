@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace TP1_SG2
 {
     class AccesoDatos
@@ -14,7 +15,7 @@ namespace TP1_SG2
         {
             DataTable dtProductos = new DataTable();
 
-            string consulta = "select distinct productos.name_product Nombre from products";
+            string consulta = "select distinct products.name_product Nombre from products";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
@@ -67,5 +68,7 @@ namespace TP1_SG2
 
             return dtVentas;
         }
+        
+        
     }
 }

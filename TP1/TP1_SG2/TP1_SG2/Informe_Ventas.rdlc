@@ -16,7 +16,7 @@
     <ReportItems>
       <Textbox Name="textbox7">
         <rd:DefaultName>textbox7</rd:DefaultName>
-        <Top>2.75cm</Top>
+        <Top>2.5cm</Top>
         <Width>2.53968cm</Width>
         <Style>
           <TextAlign>Center</TextAlign>
@@ -32,7 +32,7 @@
         <Value>Total :</Value>
       </Textbox>
       <Textbox Name="txtTotal">
-        <Top>2.75cm</Top>
+        <Top>2.5cm</Top>
         <Width>2.53968cm</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
@@ -81,7 +81,7 @@
         <Value>Bimestre</Value>
       </Textbox>
       <Textbox Name="txtMonto">
-        <Top>1.5cm</Top>
+        <Top>1.25cm</Top>
         <Width>2.53968cm</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
@@ -96,7 +96,7 @@
         <Value />
       </Textbox>
       <Textbox Name="txtBimestre">
-        <Top>1.5cm</Top>
+        <Top>1.25cm</Top>
         <Width>0.75cm</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
@@ -111,7 +111,7 @@
         <Value />
       </Textbox>
       <Textbox Name="txtAño">
-        <Top>1.5cm</Top>
+        <Top>1.25cm</Top>
         <Width>1.5cm</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
@@ -125,7 +125,7 @@
         <Value />
       </Textbox>
     </ReportItems>
-    <Height>3.75cm</Height>
+    <Height>3.25cm</Height>
   </Body>
   <Language>es-ES</Language>
   <TopMargin>2.5cm</TopMargin>
