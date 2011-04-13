@@ -22,6 +22,8 @@ namespace TP1_SG2
                 connectionString = "Data Source=" + param[0]["servidor"].InnerText + "; Initial Catalog=" + param[0]["database"].InnerText
                     + "; Integrated Security=yes";
 
+                
+
             }
 
 

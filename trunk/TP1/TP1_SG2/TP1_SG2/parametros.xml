@@ -6,7 +6,7 @@
 
   <puerto>3306</puerto>
 
-  <database>TDC history Sales</database>
+  <database>TDC_history_Sales</database>
 
   <usuario></usuario>
 
