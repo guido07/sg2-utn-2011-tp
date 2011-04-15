@@ -53,12 +53,16 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtAño = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.grilla1 = new System.Windows.Forms.DataGridView();
+            this.Año = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabVenta.SuspendLayout();
             this.tabRegiones.SuspendLayout();
             this.tabVendedores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.antiguedad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -142,8 +146,8 @@
             // 
             // tabVenta
             // 
+            this.tabVenta.Controls.Add(this.grilla1);
             this.tabVenta.Controls.Add(this.label2);
-            this.tabVenta.Controls.Add(this.reportViewer1);
             this.tabVenta.Controls.Add(this.label1);
             this.tabVenta.Controls.Add(this.txtFechaHasta);
             this.tabVenta.Controls.Add(this.cbTipoBebida);
@@ -357,24 +361,42 @@
             this.label11.TabIndex = 20;
             this.label11.Text = "Año";
             // 
-            // reportViewer1
+            // grilla1
             // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "TP1_SG2.Informe_Ventas.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(7, 84);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ShowBackButton = false;
-            this.reportViewer1.ShowContextMenu = false;
-            this.reportViewer1.ShowCredentialPrompts = false;
-            this.reportViewer1.ShowDocumentMapButton = false;
-            this.reportViewer1.ShowExportButton = false;
-            this.reportViewer1.ShowFindControls = false;
-            this.reportViewer1.ShowParameterPrompts = false;
-            this.reportViewer1.ShowPrintButton = false;
-            this.reportViewer1.ShowRefreshButton = false;
-            this.reportViewer1.ShowStopButton = false;
-            this.reportViewer1.ShowZoomControl = false;
-            this.reportViewer1.Size = new System.Drawing.Size(760, 406);
-            this.reportViewer1.TabIndex = 7;
+            this.grilla1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grilla1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Año,
+            this.Bimestre,
+            this.Monto});
+            this.grilla1.Location = new System.Drawing.Point(6, 82);
+            this.grilla1.Name = "grilla1";
+            this.grilla1.ReadOnly = true;
+            this.grilla1.RowHeadersVisible = false;
+            this.grilla1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grilla1.Size = new System.Drawing.Size(760, 403);
+            this.grilla1.TabIndex = 7;
+            // 
+            // Año
+            // 
+            this.Año.DataPropertyName = "Año";
+            this.Año.HeaderText = "Año";
+            this.Año.Name = "Año";
+            this.Año.ReadOnly = true;
+            // 
+            // Bimestre
+            // 
+            this.Bimestre.DataPropertyName = "Bimestre";
+            this.Bimestre.HeaderText = "Bimestre";
+            this.Bimestre.Name = "Bimestre";
+            this.Bimestre.ReadOnly = true;
+            // 
+            // Monto
+            // 
+            this.Monto.DataPropertyName = "Monto";
+            this.Monto.HeaderText = "Monto";
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
             // 
             // frmInformes
             // 
@@ -393,6 +415,7 @@
             this.tabVendedores.ResumeLayout(false);
             this.tabVendedores.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.antiguedad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -424,7 +447,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtAño;
         private System.Windows.Forms.Label label11;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.DataGridView grilla1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Año;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Bimestre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
     }
 }
 
