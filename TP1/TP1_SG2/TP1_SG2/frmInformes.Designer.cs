@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,6 +60,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtAño = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.grafico1 = new ZedGraph.ZedGraphControl();
             this.tabControl.SuspendLayout();
             this.tabVenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla1)).BeginInit();
@@ -72,7 +74,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic)
                             | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(278, 9);
+            this.label1.Location = new System.Drawing.Point(389, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(216, 20);
             this.label1.TabIndex = 0;
@@ -82,7 +84,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(40, 56);
+            this.label2.Location = new System.Drawing.Point(71, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 16);
             this.label2.TabIndex = 1;
@@ -91,7 +93,7 @@
             // cbTipoBebida
             // 
             this.cbTipoBebida.FormattingEnabled = true;
-            this.cbTipoBebida.Location = new System.Drawing.Point(144, 55);
+            this.cbTipoBebida.Location = new System.Drawing.Point(175, 45);
             this.cbTipoBebida.Name = "cbTipoBebida";
             this.cbTipoBebida.Size = new System.Drawing.Size(121, 21);
             this.cbTipoBebida.TabIndex = 2;
@@ -101,7 +103,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(333, 56);
+            this.label3.Location = new System.Drawing.Point(429, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 16);
             this.label3.TabIndex = 3;
@@ -111,7 +113,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(536, 56);
+            this.label4.Location = new System.Drawing.Point(708, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 4;
@@ -119,7 +121,7 @@
             // 
             // txtFechaDesde
             // 
-            this.txtFechaDesde.Location = new System.Drawing.Point(388, 55);
+            this.txtFechaDesde.Location = new System.Drawing.Point(484, 45);
             this.txtFechaDesde.Name = "txtFechaDesde";
             this.txtFechaDesde.ReadOnly = true;
             this.txtFechaDesde.Size = new System.Drawing.Size(100, 20);
@@ -128,7 +130,7 @@
             // 
             // txtFechaHasta
             // 
-            this.txtFechaHasta.Location = new System.Drawing.Point(586, 55);
+            this.txtFechaHasta.Location = new System.Drawing.Point(758, 45);
             this.txtFechaHasta.Name = "txtFechaHasta";
             this.txtFechaHasta.ReadOnly = true;
             this.txtFechaHasta.Size = new System.Drawing.Size(100, 20);
@@ -143,11 +145,12 @@
             this.tabControl.Location = new System.Drawing.Point(2, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(781, 519);
+            this.tabControl.Size = new System.Drawing.Size(981, 460);
             this.tabControl.TabIndex = 8;
             // 
             // tabVenta
             // 
+            this.tabVenta.Controls.Add(this.grafico1);
             this.tabVenta.Controls.Add(this.grilla1);
             this.tabVenta.Controls.Add(this.label2);
             this.tabVenta.Controls.Add(this.label1);
@@ -159,13 +162,15 @@
             this.tabVenta.Location = new System.Drawing.Point(4, 22);
             this.tabVenta.Name = "tabVenta";
             this.tabVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVenta.Size = new System.Drawing.Size(773, 493);
+            this.tabVenta.Size = new System.Drawing.Size(973, 434);
             this.tabVenta.TabIndex = 0;
             this.tabVenta.Text = "Ventas";
             this.tabVenta.UseVisualStyleBackColor = true;
             // 
             // grilla1
             // 
+            this.grilla1.AllowUserToAddRows = false;
+            this.grilla1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.grilla1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grilla1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -187,7 +192,7 @@
             this.grilla1.ReadOnly = true;
             this.grilla1.RowHeadersVisible = false;
             this.grilla1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grilla1.Size = new System.Drawing.Size(760, 403);
+            this.grilla1.Size = new System.Drawing.Size(376, 349);
             this.grilla1.TabIndex = 7;
             // 
             // Año
@@ -410,11 +415,25 @@
             this.label11.TabIndex = 20;
             this.label11.Text = "Año";
             // 
+            // grafico1
+            // 
+            this.grafico1.Location = new System.Drawing.Point(388, 81);
+            this.grafico1.Name = "grafico1";
+            this.grafico1.ScrollGrace = 0;
+            this.grafico1.ScrollMaxX = 0;
+            this.grafico1.ScrollMaxY = 0;
+            this.grafico1.ScrollMaxY2 = 0;
+            this.grafico1.ScrollMinX = 0;
+            this.grafico1.ScrollMinY = 0;
+            this.grafico1.ScrollMinY2 = 0;
+            this.grafico1.Size = new System.Drawing.Size(582, 350);
+            this.grafico1.TabIndex = 8;
+            // 
             // frmInformes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 522);
+            this.ClientSize = new System.Drawing.Size(984, 462);
             this.Controls.Add(this.tabControl);
             this.Name = "frmInformes";
             this.Text = "Informes";
@@ -463,6 +482,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Año;
         private System.Windows.Forms.DataGridViewTextBoxColumn Bimestre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
+        private ZedGraph.ZedGraphControl grafico1;
     }
 }
 
