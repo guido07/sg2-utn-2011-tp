@@ -45,6 +45,7 @@ namespace TP1_SG2
                     DataRow fila = dtVentas.NewRow();
                     fila["Año"] = anio;
                     fila["Bimestre"] = bim;
+                    fila["Monto"] = 0;
 
                     dtVentas.Rows.Add(fila);
 
@@ -61,12 +62,27 @@ namespace TP1_SG2
             DataTable ventas = AccesoDatos.informeVentas(cbTipoBebida.SelectedValue.ToString(), DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
 
                    
-            for (int i = 0; i < ventas.Rows.Count; i++)
-            {                
-                double fec = DateTime.Parse(ventas.Rows[i]["Fecha"].ToString()).Month / 2;
-                double bimestre = Math.Round(fec, MidpointRounding.ToEven);   //calcula bimestre segun la fecha de venta
+            //for (int i = 0; i < ventas.Rows.Count; i++)
+            foreach (DataRow dr in ventas.Rows)
+            {
+                int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
+                double fec = DateTime.Parse(dr["Fecha"].ToString()).Month / 2;                  //calcula bimestre segun la fecha de venta
+                int bimestre = Convert.ToInt16(Math.Round(fec, MidpointRounding.ToEven));
+                   
                 
                 //BUSCAR EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO SUMARLE EL MONTO DE ESTA VENTA (vamos acumulando)
+
+                foreach (DataRow fila in dtVentas.Rows)
+                {
+                    if (Convert.ToInt16(fila["Año"]) == anio)
+                    {
+                        if (Convert.ToInt16(fila["Bimestre"]) == bimestre)
+                          fila["Monto"] += dr["Monto"].ToString();
+                    }
+                }
+
+
+
             
             }
 
