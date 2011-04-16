@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using ZedGraph;
+using System.Globalization;
 
 
 namespace TP1_SG2
@@ -14,28 +15,67 @@ namespace TP1_SG2
     public partial class frmInformes : Form
     {
         public DataTable dtVentas;
+        public DataTable dtRegiones;
+        public DataTable dtVendedores;
+        public CultureInfo cultura = new CultureInfo("es-AR");
 
         public frmInformes()
         {
             InitializeComponent();
 
+            //INICIALIZO DATATABLE PARA EL PRIMER INFORME
             dtVentas = new DataTable();
             dtVentas.Columns.Add("Año");
             dtVentas.Columns.Add("Bimestre");
-            dtVentas.Columns.Add("Monto");
-
-            
+            dtVentas.Columns.Add("Monto");           
             
             grilla1.DataSource = dtVentas;
+
+
+            //INICIALIZO DATATABLE PARA EL SEGUNDO INFORME
+            dtRegiones = new DataTable();
+            dtRegiones.Columns.Add("Año");
+            dtRegiones.Columns.Add("Mes");
+            dtRegiones.Columns.Add("Monto");
+
+            grilla2.DataSource = dtRegiones;
+
+
+            //INICIALIZO DATATABLE PARA EL TERCER INFORME
+            dtVendedores = new DataTable();
+            dtVendedores.Columns.Add("Vendedor");
+            dtVendedores.Columns.Add("Monto");
+
+            grilla3.DataSource = dtVendedores;
 
         }
 
         
-        private void Perfomace_Ventas_Load(object sender, EventArgs e)
-        {                    
+        private void Form_Load(object sender, EventArgs e)
+        {
+            inicializarPrimerPestaña();
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab == tabVenta)
+                inicializarPrimerPestaña();
+
+            if (tabControl.SelectedTab == tabRegiones)
+                inicializarSegundaPestaña();
+                       
+            if (tabControl.SelectedTab == tabVendedores)
+                inicializarTercerPestaña();
+
+        }
+
+
+
+        private void inicializarPrimerPestaña()
+        {
+            dtVentas.Clear();
 
             cbTipoBebida.DataSource = AccesoDatos.buscaProductos();
-
 
             for (int anio = 2006; anio <= 2009; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
             {
@@ -55,7 +95,42 @@ namespace TP1_SG2
 
             }
             dtVentas.Rows[dtVentas.Rows.Count - 1].Delete();
-            dtVentas.Rows[dtVentas.Rows.Count - 1].Delete();
+            dtVentas.Rows[dtVentas.Rows.Count - 1].Delete();                       
+
+        }
+
+
+        private void inicializarSegundaPestaña()
+        {
+            dtRegiones.Clear();
+
+            cbRegion.DataSource = AccesoDatos.buscaRegiones();
+
+
+            for (int anio = 2006; anio <= 2008; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
+            {
+                int cont = 0;
+
+                for (int mes = 0; mes < 12; mes++)
+                {
+                    DataRow fila = dtRegiones.NewRow();
+                    fila["Año"] = anio;
+                    fila["Mes"] = cultura.TextInfo.ToTitleCase(cultura.DateTimeFormat.MonthNames[mes]);     //Busca el mes en la instancia cultura de la clase CultureInfo
+                    fila["Monto"] = 0;                                                                      // y la trae con mayúscula en la primer letra
+
+                    dtRegiones.Rows.Add(fila);
+
+                    cont++;
+                }
+
+            }
+
+        }
+
+
+        private void inicializarTercerPestaña()
+        {
+            dtVendedores.Clear();
 
         }
         
@@ -71,14 +146,12 @@ namespace TP1_SG2
                 int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
                 double fec = DateTime.Parse(dr["Fecha"].ToString()).Month / 2;                  //calcula bimestre segun la fecha de venta
                 int bimestre = Convert.ToInt16(Math.Round(fec, MidpointRounding.ToEven));
-                   
-                
-                //BUSCAR EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO SUMARLE EL MONTO DE ESTA VENTA (vamos acumulando)
+                                          
 
                 foreach (DataRow fila in dtVentas.Rows)
                 {
                     if (Convert.ToInt16(fila["Año"]) == anio)
-                    {
+                    {                                                               //BUSCA EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
                         if (Convert.ToInt16(fila["Bimestre"]) == bimestre)
                           fila["Monto"] += dr["Monto"].ToString();
                     }
@@ -96,50 +169,54 @@ namespace TP1_SG2
         private void graficar()
         {
 
-            
+            grafico1.GraphPane = new GraphPane(grafico1.GraphPane.Rect, "", "t", "$");
 
-                grafico1.GraphPane = new GraphPane(grafico1.GraphPane.Rect, "", "t", "$");
+            GraphPane myPane = grafico1.GraphPane;
 
-                GraphPane myPane = grafico1.GraphPane;
+            // Set the Titles
 
-                // Set the Titles
+            myPane.Title.Text = "";
+            myPane.XAxis.Title.Text = "t";
+            myPane.YAxis.Title.Text = "$";
 
-                myPane.Title.Text = "";
-                myPane.XAxis.Title.Text = "t";
-                myPane.YAxis.Title.Text = "$";
+            // Make up some data arrays based on the Sine function
 
-                // Make up some data arrays based on the Sine function
+            double x, y;
 
-                double x, y;
-            
-                PointPairList list = new PointPairList();
-                    
-                            
+            PointPairList list = new PointPairList();
 
-                    for (double i = 0; i < 5 ; i = i + 0.001)
-                    {
-                        x = (double)i;
-                        y = 1;
-                        
-                        list.Add(x, y);                      
 
-                    }
-                          
-                        LineItem myCurve = myPane.AddCurve("",
-                              list, Color.Blue, SymbolType.None);
-                        myCurve.Line.Width = 3;
-                    
-                    //BUSCAR EL MÁXIMO "Y" PARA DETERMINAR LA ALTURA DEL GRAFICO
 
-          //          myPane.XAxis.Scale.Max = ;
-          //          myPane.YAxis.Scale.Max = ;
-                    grafico1.AxisChange();
-                    grafico1.Refresh();
-               
+            for (double i = 0; i < 5; i = i++)
+            {
+                x = (double)i;
+                y = 1;
 
-            
+                list.Add(x, y);
+
+            }
+
+            LineItem myCurve = myPane.AddCurve("",
+                  list, Color.Blue, SymbolType.None);
+            myCurve.Line.Width = 3;
+
+            //BUSCAR EL MÁXIMO "Y" PARA DETERMINAR LA ALTURA DEL GRAFICO
+
+            //          myPane.XAxis.Scale.Max = ;
+            //          myPane.YAxis.Scale.Max = ;
+            grafico1.AxisChange();
+            grafico1.Refresh();
+
+
+
 
         }
+
+        private void cbRegion_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DataTable ventas = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
+        }
+
 
 
 

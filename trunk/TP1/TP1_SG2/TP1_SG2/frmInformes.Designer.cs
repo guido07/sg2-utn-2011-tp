@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbTipoBebida = new System.Windows.Forms.ComboBox();
@@ -40,13 +44,18 @@
             this.txtFechaHasta = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabVenta = new System.Windows.Forms.TabPage();
+            this.grafico1 = new ZedGraph.ZedGraphControl();
             this.grilla1 = new System.Windows.Forms.DataGridView();
             this.Año = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabRegiones = new System.Windows.Forms.TabPage();
+            this.grafico2 = new ZedGraph.ZedGraphControl();
+            this.grilla2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
-            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.label6 = new System.Windows.Forms.Label();
             this.txtHasta = new System.Windows.Forms.TextBox();
             this.cbRegion = new System.Windows.Forms.ComboBox();
@@ -54,18 +63,22 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabVendedores = new System.Windows.Forms.TabPage();
+            this.grafico3 = new ZedGraph.ZedGraphControl();
+            this.grilla3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.antiguedad = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
-            this.reportViewer3 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.label10 = new System.Windows.Forms.Label();
             this.txtAño = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.grafico1 = new ZedGraph.ZedGraphControl();
             this.tabControl.SuspendLayout();
             this.tabVenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla1)).BeginInit();
             this.tabRegiones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla2)).BeginInit();
             this.tabVendedores.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.antiguedad)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,6 +160,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(981, 460);
             this.tabControl.TabIndex = 8;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabVenta
             // 
@@ -167,26 +181,40 @@
             this.tabVenta.Text = "Ventas";
             this.tabVenta.UseVisualStyleBackColor = true;
             // 
+            // grafico1
+            // 
+            this.grafico1.Location = new System.Drawing.Point(388, 81);
+            this.grafico1.Name = "grafico1";
+            this.grafico1.ScrollGrace = 0;
+            this.grafico1.ScrollMaxX = 0;
+            this.grafico1.ScrollMaxY = 0;
+            this.grafico1.ScrollMaxY2 = 0;
+            this.grafico1.ScrollMinX = 0;
+            this.grafico1.ScrollMinY = 0;
+            this.grafico1.ScrollMinY2 = 0;
+            this.grafico1.Size = new System.Drawing.Size(582, 350);
+            this.grafico1.TabIndex = 8;
+            // 
             // grilla1
             // 
             this.grilla1.AllowUserToAddRows = false;
             this.grilla1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.grilla1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.grilla1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle33;
             this.grilla1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grilla1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grilla1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Año,
             this.Bimestre,
             this.Monto});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grilla1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grilla1.DefaultCellStyle = dataGridViewCellStyle34;
             this.grilla1.Location = new System.Drawing.Point(6, 82);
             this.grilla1.Name = "grilla1";
             this.grilla1.ReadOnly = true;
@@ -218,8 +246,9 @@
             // 
             // tabRegiones
             // 
+            this.tabRegiones.Controls.Add(this.grafico2);
+            this.tabRegiones.Controls.Add(this.grilla2);
             this.tabRegiones.Controls.Add(this.label5);
-            this.tabRegiones.Controls.Add(this.reportViewer2);
             this.tabRegiones.Controls.Add(this.label6);
             this.tabRegiones.Controls.Add(this.txtHasta);
             this.tabRegiones.Controls.Add(this.cbRegion);
@@ -229,47 +258,91 @@
             this.tabRegiones.Location = new System.Drawing.Point(4, 22);
             this.tabRegiones.Name = "tabRegiones";
             this.tabRegiones.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRegiones.Size = new System.Drawing.Size(773, 493);
+            this.tabRegiones.Size = new System.Drawing.Size(973, 434);
             this.tabRegiones.TabIndex = 1;
             this.tabRegiones.Text = "Regiones";
             this.tabRegiones.UseVisualStyleBackColor = true;
+            // 
+            // grafico2
+            // 
+            this.grafico2.Location = new System.Drawing.Point(388, 81);
+            this.grafico2.Name = "grafico2";
+            this.grafico2.ScrollGrace = 0;
+            this.grafico2.ScrollMaxX = 0;
+            this.grafico2.ScrollMaxY = 0;
+            this.grafico2.ScrollMaxY2 = 0;
+            this.grafico2.ScrollMinX = 0;
+            this.grafico2.ScrollMinY = 0;
+            this.grafico2.ScrollMinY2 = 0;
+            this.grafico2.Size = new System.Drawing.Size(582, 350);
+            this.grafico2.TabIndex = 17;
+            // 
+            // grilla2
+            // 
+            this.grilla2.AllowUserToAddRows = false;
+            this.grilla2.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.grilla2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
+            this.grilla2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grilla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grilla2.DefaultCellStyle = dataGridViewCellStyle32;
+            this.grilla2.Location = new System.Drawing.Point(6, 82);
+            this.grilla2.Name = "grilla2";
+            this.grilla2.ReadOnly = true;
+            this.grilla2.RowHeadersVisible = false;
+            this.grilla2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grilla2.Size = new System.Drawing.Size(376, 349);
+            this.grilla2.TabIndex = 16;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Año";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Año";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Mes";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Mes";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Monto";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Monto";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(89, 43);
+            this.label5.Location = new System.Drawing.Point(194, 43);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 32);
             this.label5.TabIndex = 10;
             this.label5.Text = "Region de \r\nprocedencia";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // reportViewer2
-            // 
-            this.reportViewer2.LocalReport.ReportEmbeddedResource = "TP1_SG2.Informe_Regiones.rdlc";
-            this.reportViewer2.Location = new System.Drawing.Point(6, 81);
-            this.reportViewer2.Name = "reportViewer2";
-            this.reportViewer2.ShowBackButton = false;
-            this.reportViewer2.ShowContextMenu = false;
-            this.reportViewer2.ShowCredentialPrompts = false;
-            this.reportViewer2.ShowDocumentMapButton = false;
-            this.reportViewer2.ShowExportButton = false;
-            this.reportViewer2.ShowFindControls = false;
-            this.reportViewer2.ShowParameterPrompts = false;
-            this.reportViewer2.ShowPrintButton = false;
-            this.reportViewer2.ShowRefreshButton = false;
-            this.reportViewer2.ShowStopButton = false;
-            this.reportViewer2.ShowZoomControl = false;
-            this.reportViewer2.Size = new System.Drawing.Size(760, 406);
-            this.reportViewer2.TabIndex = 16;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic)
                             | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(201, 6);
+            this.label6.Location = new System.Drawing.Point(301, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(370, 20);
             this.label6.TabIndex = 9;
@@ -277,7 +350,7 @@
             // 
             // txtHasta
             // 
-            this.txtHasta.Location = new System.Drawing.Point(560, 52);
+            this.txtHasta.Location = new System.Drawing.Point(665, 52);
             this.txtHasta.Name = "txtHasta";
             this.txtHasta.ReadOnly = true;
             this.txtHasta.Size = new System.Drawing.Size(100, 20);
@@ -287,14 +360,15 @@
             // cbRegion
             // 
             this.cbRegion.FormattingEnabled = true;
-            this.cbRegion.Location = new System.Drawing.Point(179, 52);
+            this.cbRegion.Location = new System.Drawing.Point(284, 52);
             this.cbRegion.Name = "cbRegion";
             this.cbRegion.Size = new System.Drawing.Size(121, 21);
             this.cbRegion.TabIndex = 11;
+            this.cbRegion.SelectedValueChanged += new System.EventHandler(this.cbRegion_SelectedValueChanged);
             // 
             // txtDesde
             // 
-            this.txtDesde.Location = new System.Drawing.Point(382, 52);
+            this.txtDesde.Location = new System.Drawing.Point(487, 52);
             this.txtDesde.Name = "txtDesde";
             this.txtDesde.ReadOnly = true;
             this.txtDesde.Size = new System.Drawing.Size(100, 20);
@@ -305,7 +379,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(327, 53);
+            this.label7.Location = new System.Drawing.Point(432, 53);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 16);
             this.label7.TabIndex = 12;
@@ -315,7 +389,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(510, 53);
+            this.label8.Location = new System.Drawing.Point(615, 53);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 16);
             this.label8.TabIndex = 13;
@@ -323,23 +397,79 @@
             // 
             // tabVendedores
             // 
+            this.tabVendedores.Controls.Add(this.grafico3);
+            this.tabVendedores.Controls.Add(this.grilla3);
             this.tabVendedores.Controls.Add(this.antiguedad);
             this.tabVendedores.Controls.Add(this.label9);
-            this.tabVendedores.Controls.Add(this.reportViewer3);
             this.tabVendedores.Controls.Add(this.label10);
             this.tabVendedores.Controls.Add(this.txtAño);
             this.tabVendedores.Controls.Add(this.label11);
             this.tabVendedores.Location = new System.Drawing.Point(4, 22);
             this.tabVendedores.Name = "tabVendedores";
             this.tabVendedores.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVendedores.Size = new System.Drawing.Size(773, 493);
+            this.tabVendedores.Size = new System.Drawing.Size(973, 434);
             this.tabVendedores.TabIndex = 2;
             this.tabVendedores.Text = "Vendedores";
             this.tabVendedores.UseVisualStyleBackColor = true;
             // 
+            // grafico3
+            // 
+            this.grafico3.Location = new System.Drawing.Point(386, 81);
+            this.grafico3.Name = "grafico3";
+            this.grafico3.ScrollGrace = 0;
+            this.grafico3.ScrollMaxX = 0;
+            this.grafico3.ScrollMaxY = 0;
+            this.grafico3.ScrollMaxY2 = 0;
+            this.grafico3.ScrollMinX = 0;
+            this.grafico3.ScrollMinY = 0;
+            this.grafico3.ScrollMinY2 = 0;
+            this.grafico3.Size = new System.Drawing.Size(582, 350);
+            this.grafico3.TabIndex = 26;
+            // 
+            // grilla3
+            // 
+            this.grilla3.AllowUserToAddRows = false;
+            this.grilla3.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.grilla3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle35;
+            this.grilla3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grilla3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grilla3.DefaultCellStyle = dataGridViewCellStyle36;
+            this.grilla3.Location = new System.Drawing.Point(4, 82);
+            this.grilla3.Name = "grilla3";
+            this.grilla3.ReadOnly = true;
+            this.grilla3.RowHeadersVisible = false;
+            this.grilla3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grilla3.Size = new System.Drawing.Size(376, 349);
+            this.grilla3.TabIndex = 25;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Vendedor";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Vendedor";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Monto";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Monto";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
             // antiguedad
             // 
-            this.antiguedad.Location = new System.Drawing.Point(264, 53);
+            this.antiguedad.Location = new System.Drawing.Point(362, 53);
             this.antiguedad.Minimum = new decimal(new int[] {
             1,
             0,
@@ -359,38 +489,19 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(130, 53);
+            this.label9.Location = new System.Drawing.Point(228, 53);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 16);
             this.label9.TabIndex = 19;
             this.label9.Text = "Antigüedad en años";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // reportViewer3
-            // 
-            this.reportViewer3.LocalReport.ReportEmbeddedResource = "TP1_SG2.Informe_Vendedores.rdlc";
-            this.reportViewer3.Location = new System.Drawing.Point(6, 81);
-            this.reportViewer3.Name = "reportViewer3";
-            this.reportViewer3.ShowBackButton = false;
-            this.reportViewer3.ShowContextMenu = false;
-            this.reportViewer3.ShowCredentialPrompts = false;
-            this.reportViewer3.ShowDocumentMapButton = false;
-            this.reportViewer3.ShowExportButton = false;
-            this.reportViewer3.ShowFindControls = false;
-            this.reportViewer3.ShowParameterPrompts = false;
-            this.reportViewer3.ShowPrintButton = false;
-            this.reportViewer3.ShowRefreshButton = false;
-            this.reportViewer3.ShowStopButton = false;
-            this.reportViewer3.ShowZoomControl = false;
-            this.reportViewer3.Size = new System.Drawing.Size(760, 406);
-            this.reportViewer3.TabIndex = 22;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic)
                             | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(252, 6);
+            this.label10.Location = new System.Drawing.Point(352, 6);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(268, 20);
             this.label10.TabIndex = 18;
@@ -398,7 +509,7 @@
             // 
             // txtAño
             // 
-            this.txtAño.Location = new System.Drawing.Point(505, 52);
+            this.txtAño.Location = new System.Drawing.Point(603, 52);
             this.txtAño.Name = "txtAño";
             this.txtAño.ReadOnly = true;
             this.txtAño.Size = new System.Drawing.Size(100, 20);
@@ -409,25 +520,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(469, 53);
+            this.label11.Location = new System.Drawing.Point(567, 53);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 16);
             this.label11.TabIndex = 20;
             this.label11.Text = "Año";
-            // 
-            // grafico1
-            // 
-            this.grafico1.Location = new System.Drawing.Point(388, 81);
-            this.grafico1.Name = "grafico1";
-            this.grafico1.ScrollGrace = 0;
-            this.grafico1.ScrollMaxX = 0;
-            this.grafico1.ScrollMaxY = 0;
-            this.grafico1.ScrollMaxY2 = 0;
-            this.grafico1.ScrollMinX = 0;
-            this.grafico1.ScrollMinY = 0;
-            this.grafico1.ScrollMinY2 = 0;
-            this.grafico1.Size = new System.Drawing.Size(582, 350);
-            this.grafico1.TabIndex = 8;
             // 
             // frmInformes
             // 
@@ -436,16 +533,19 @@
             this.ClientSize = new System.Drawing.Size(984, 462);
             this.Controls.Add(this.tabControl);
             this.Name = "frmInformes";
-            this.Text = "Informes";
-            this.Load += new System.EventHandler(this.Perfomace_Ventas_Load);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Informes - The Drinking Company";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.tabControl.ResumeLayout(false);
             this.tabVenta.ResumeLayout(false);
             this.tabVenta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla1)).EndInit();
             this.tabRegiones.ResumeLayout(false);
             this.tabRegiones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla2)).EndInit();
             this.tabVendedores.ResumeLayout(false);
             this.tabVendedores.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.antiguedad)).EndInit();
             this.ResumeLayout(false);
 
@@ -464,7 +564,6 @@
         private System.Windows.Forms.TabPage tabVenta;
         private System.Windows.Forms.TabPage tabRegiones;
         private System.Windows.Forms.Label label5;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtHasta;
         private System.Windows.Forms.ComboBox cbRegion;
@@ -474,7 +573,6 @@
         private System.Windows.Forms.TabPage tabVendedores;
         private System.Windows.Forms.NumericUpDown antiguedad;
         private System.Windows.Forms.Label label9;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtAño;
         private System.Windows.Forms.Label label11;
@@ -483,6 +581,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Bimestre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private ZedGraph.ZedGraphControl grafico1;
+        private ZedGraph.ZedGraphControl grafico2;
+        private System.Windows.Forms.DataGridView grilla2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private ZedGraph.ZedGraphControl grafico3;
+        private System.Windows.Forms.DataGridView grilla3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }
 
