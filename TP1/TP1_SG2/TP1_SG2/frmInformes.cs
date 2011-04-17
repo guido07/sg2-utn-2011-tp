@@ -14,6 +14,7 @@ namespace TP1_SG2
 {
     public partial class frmInformes : Form
     {
+        public DataTable ventas;
         public DataTable dtVentas;
         public DataTable dtRegiones;
         public DataTable dtVendedores;
@@ -23,6 +24,12 @@ namespace TP1_SG2
         public frmInformes()
         {
             InitializeComponent();
+
+            //INICIALIZO DATATABLE INTERMEDIO
+            ventas = new DataTable();
+            ventas.Columns.Add("Fecha");
+            ventas.Columns.Add("Monto");
+
 
             //INICIALIZO DATATABLE PARA EL PRIMER INFORME
             dtVentas = new DataTable();
@@ -66,6 +73,7 @@ namespace TP1_SG2
 
             cbTipoBebida.DataSource = AccesoDatos.buscaProductos();
             cbTipoBebida.DisplayMember = "Producto";
+            cbTipoBebida.ValueMember = "Producto";
             
             
             for (int anio = 2006; anio <= 2009; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
@@ -97,6 +105,7 @@ namespace TP1_SG2
 
             cbRegion.DataSource = AccesoDatos.buscaRegiones();
             cbRegion.DisplayMember = "Region";
+            cbRegion.ValueMember = "Region";
       
 
             for (int anio = 2006; anio <= 2008; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
@@ -168,6 +177,9 @@ namespace TP1_SG2
                 }
        
             }
+
+            graficar1();
+
         }
 
 
@@ -225,7 +237,7 @@ namespace TP1_SG2
         {
             resetearMaxMin();
 
-            DataTable ventas = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
+            ventas = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
 
 
             foreach (DataRow dr in ventas.Rows)

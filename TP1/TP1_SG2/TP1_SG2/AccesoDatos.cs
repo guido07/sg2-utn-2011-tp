@@ -76,7 +76,7 @@ INSERT INTO #precios SELECT max(pr.date), pr.product_id
 	FROM dbo.prices pr inner join #vta on pr.product_id = #vta.product_id where pr.date <= #vta.date group by pr.product_id
 
             
-select #vta.date, (prices.price * #vta.quantity) from #vta inner join #precios on #vta.product_id = #precios.product_id
+select #vta.date Fecha, (prices.price * #vta.quantity) Monto from #vta inner join #precios on #vta.product_id = #precios.product_id
 inner join dbo.products on #precios.product_id = dbo.products.id_product 
 inner join dbo.prices on #precios.product_id = dbo.prices.product_id and #precios.date = dbo.prices.date 
 where dbo.products.name_product = @producto;";
