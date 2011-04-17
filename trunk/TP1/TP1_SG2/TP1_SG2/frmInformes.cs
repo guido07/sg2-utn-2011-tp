@@ -48,37 +48,26 @@ namespace TP1_SG2
             dtVendedores.Columns.Add("Monto");
 
             grilla3.DataSource = dtVendedores;
+                       
 
         }
 
         
         private void Form_Load(object sender, EventArgs e)
         {
-            inicializarPrimerPestaña();                       
+            inicializarPrimerPestaña();
             
         }
-
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControl.SelectedTab == tabVenta)
-                inicializarPrimerPestaña();
-
-            if (tabControl.SelectedTab == tabRegiones)
-                inicializarSegundaPestaña();
-                       
-            if (tabControl.SelectedTab == tabVendedores)
-                inicializarTercerPestaña();
-
-        }
-
-
+        
 
         private void inicializarPrimerPestaña()
         {
             dtVentas.Clear();
 
             cbTipoBebida.DataSource = AccesoDatos.buscaProductos();
-
+            cbTipoBebida.DisplayMember = "Producto";
+            //cbTipoBebida.ValueMember = "Producto";
+            
             for (int anio = 2006; anio <= 2009; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
             {
                 int cont = 0;
@@ -107,6 +96,8 @@ namespace TP1_SG2
             dtRegiones.Clear();
 
             cbRegion.DataSource = AccesoDatos.buscaRegiones();
+            cbRegion.DisplayMember = "Region";
+      //      cbRegion.ValueMember = "Region";
 
 
             for (int anio = 2006; anio <= 2008; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
@@ -178,11 +169,6 @@ namespace TP1_SG2
                 }
        
             }
-
-
-
-
-
         }
 
 
@@ -271,7 +257,7 @@ namespace TP1_SG2
             }
         
         }
-        
+               
 
 
 
