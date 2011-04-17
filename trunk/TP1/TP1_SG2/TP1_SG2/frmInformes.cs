@@ -54,7 +54,7 @@ namespace TP1_SG2
         
         private void Form_Load(object sender, EventArgs e)
         {
-            inicializarPrimerPestaña();
+            inicializarPrimerPestaña();                       
             
         }
 
@@ -143,6 +143,8 @@ namespace TP1_SG2
         }
         
 
+        //ELIJO EL TIPO DE BEBIDA PARA EL PRIMER INFORMWE
+
         private void cbTipoBebida_SelectedValueChanged(object sender, EventArgs e)
         {
             resetearMaxMin();            
@@ -197,48 +199,78 @@ namespace TP1_SG2
             myPane.XAxis.Title.Text = "t";
             myPane.YAxis.Title.Text = "$";
 
-            // Make up some data arrays based on the Sine function
+            
 
             double x, y;
 
             PointPairList list = new PointPairList();
 
 
-            int i = 0;
-            for( ; i < 5; i++)
+            int i = 1;
+            for( ; i <= 22; i++)                                    //SON 22 BIMESTRES
             {
                 x = (double)i;
-                y = Convert.ToDouble(dtVentas.Rows[i]["Monto"]);
+                y = Convert.ToDouble(dtVentas.Rows[i - 1]["Monto"]);        //USAMOS i-1 PARA MOSTRAR MEJOR LOS BIMESTRES
 
                 list.Add(x, y);
 
             }
-
-            LineItem myCurve = myPane.AddCurve("",
-                  list, Color.Blue, SymbolType.None);
-            myCurve.Line.Width = 3;
-
+            
             
 
+            LineItem myCurve = myPane.AddCurve("", list, Color.SteelBlue, SymbolType.Circle);
+            myCurve.Line.Width = 3;
+            myCurve.Symbol.Fill = new Fill(Color.LightBlue);
+            myCurve.Symbol.Size = 10;
+
+
+            
             myPane.XAxis.Scale.Max = i;
-            myPane.YAxis.Scale.Max = max;
+            myPane.YAxis.Scale.Max = max * 1.2;
+            
             grafico1.AxisChange();
             grafico1.Refresh();
-
-
-
-
+        
         }
+
+
+        //ELIJO LA REGION PARA EL SEGUNDO INFORME
 
         private void cbRegion_SelectedValueChanged(object sender, EventArgs e)
         {
+            resetearMaxMin();
+
             DataTable ventas = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
-        }
 
 
+            foreach (DataRow dr in ventas.Rows)
+            {
+                int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
+                string mes = cultura.TextInfo.ToTitleCase(cultura.DateTimeFormat.MonthNames[Convert.ToInt16(dr["Fecha"])]);                 
+
+
+                foreach (DataRow fila in dtRegiones.Rows)
+                {
+                    if (Convert.ToInt16(fila["Año"]) == anio)
+                    {                                                               //BUSCA EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
+                        if (Convert.ToInt16(fila["Mes"]) == mes)
+                        {
+                            double monto = Convert.ToDouble(fila["Monto"]) + Convert.ToDouble(dr["Monto"]);
+
+                            fila["Monto"] = monto.ToString();
+
+                            if (Convert.ToDouble(fila["Monto"]) > max)
+                                max = Convert.ToDouble(fila["Monto"]);
+                            if (Convert.ToDouble(fila["Monto"]) < min)
+                                min = Convert.ToDouble(fila["Monto"]);
+                        
+                        }
+                    }
+                }
+
+            }
         
-
-
+        }
         
 
 
