@@ -18,6 +18,7 @@ namespace TP1_SG2
         public DataTable dtRegiones;
         public DataTable dtVendedores;
         public CultureInfo cultura = new CultureInfo("es-AR");
+        public double max = 0, min = double.MaxValue;
 
         public frmInformes()
         {
@@ -133,14 +134,21 @@ namespace TP1_SG2
             dtVendedores.Clear();
 
         }
+
+        private void resetearMaxMin()
+        {
+            min = double.MaxValue;
+            max = 0;
+        }
         
 
         private void cbTipoBebida_SelectedValueChanged(object sender, EventArgs e)
         {
+            resetearMaxMin();            
+
             DataTable ventas = AccesoDatos.informeVentas(cbTipoBebida.SelectedValue.ToString(), DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
 
-                   
-            //for (int i = 0; i < ventas.Rows.Count; i++)
+                        
             foreach (DataRow dr in ventas.Rows)
             {
                 int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
@@ -153,7 +161,16 @@ namespace TP1_SG2
                     if (Convert.ToInt16(fila["Año"]) == anio)
                     {                                                               //BUSCA EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
                         if (Convert.ToInt16(fila["Bimestre"]) == bimestre)
-                          fila["Monto"] += dr["Monto"].ToString();
+                        {
+                            double monto = Convert.ToDouble(fila["Monto"]) + Convert.ToDouble(dr["Monto"]);
+
+                            fila["Monto"] = monto.ToString();
+
+                            if (Convert.ToDouble(fila["Monto"]) > max)
+                                max = Convert.ToDouble(fila["Monto"]);
+                            if (Convert.ToDouble(fila["Monto"]) < min)
+                                min = Convert.ToDouble(fila["Monto"]);
+                        }                        
                     }
                 }
        
