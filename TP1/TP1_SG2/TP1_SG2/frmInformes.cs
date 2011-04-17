@@ -55,6 +55,7 @@ namespace TP1_SG2
         private void Form_Load(object sender, EventArgs e)
         {
             inicializarPrimerPestaña();
+            
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -203,8 +204,8 @@ namespace TP1_SG2
             PointPairList list = new PointPairList();
 
 
-
-            for (int i = 0; i < 5; i = i++)
+            int i = 0;
+            for( ; i < 5; i++)
             {
                 x = (double)i;
                 y = Convert.ToDouble(dtVentas.Rows[i]["Monto"]);
@@ -217,10 +218,10 @@ namespace TP1_SG2
                   list, Color.Blue, SymbolType.None);
             myCurve.Line.Width = 3;
 
-            //BUSCAR EL MÁXIMO "Y" PARA DETERMINAR LA ALTURA DEL GRAFICO
+            
 
-            //          myPane.XAxis.Scale.Max = ;
-            //          myPane.YAxis.Scale.Max = ;
+            myPane.XAxis.Scale.Max = i;
+            myPane.YAxis.Scale.Max = max;
             grafico1.AxisChange();
             grafico1.Refresh();
 
@@ -234,6 +235,11 @@ namespace TP1_SG2
             DataTable ventas = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
         }
 
+
+        
+
+
+        
 
 
 
