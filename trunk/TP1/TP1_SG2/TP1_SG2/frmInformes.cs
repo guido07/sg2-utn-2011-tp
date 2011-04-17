@@ -140,8 +140,7 @@ namespace TP1_SG2
             resetearMaxMin();            
 
             DataTable ventas = AccesoDatos.informeVentas(cbTipoBebida.SelectedValue.ToString(), DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
-            
-            MessageBox.Show(ventas.Rows[0]["Monto"].ToString());
+                       
                         
             foreach (DataRow dr in ventas.Rows)
             {
