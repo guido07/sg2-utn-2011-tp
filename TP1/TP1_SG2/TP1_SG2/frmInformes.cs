@@ -253,7 +253,7 @@ namespace TP1_SG2
                 {
                     if (Convert.ToInt16(fila["Año"]) == anio)
                     {                                                               //BUSCA EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
-                        if (Convert.ToInt16(fila["Mes"]) == mes)
+                        if (fila["Mes"].ToString() == mes)
                         {
                             double monto = Convert.ToDouble(fila["Monto"]) + Convert.ToDouble(dr["Monto"]);
 
