@@ -364,7 +364,6 @@
             this.cbRegion.Name = "cbRegion";
             this.cbRegion.Size = new System.Drawing.Size(121, 21);
             this.cbRegion.TabIndex = 11;
-            this.cbRegion.SelectedIndexChanged += new System.EventHandler(this.cbRegion_SelectedIndexChanged);
             this.cbRegion.SelectedValueChanged += new System.EventHandler(this.cbRegion_SelectedValueChanged);
             // 
             // txtDesde
