@@ -64,7 +64,19 @@ namespace TP1_SG2
         {
             DataTable dtVentas = new DataTable();
 
-            string consulta = "drop temporary table if EXISTS vta; create temporary table vta(select  ven.date, ven.product_id, ven.quantity from dbo.billing ven where ven.date between @desde and @hasta); drop temporary table if EXISTS precios; create temporary table precios(select max(pr.date) fecha, pr.product_id from prices pr inner join vta on pr.product_id = vta.product_id where pr.date <= vta.date group by pr.product_id); select venta.date, prices.price from dbo.billing venta inner join precios on venta.product_id = precios.product_id inner join products on precios.product_id = products.id_product inner join prices on precios.product_id = prices.product_id and precios.date = prices.date where products.name_product = @producto;";
+            string consulta =
+            @"drop temporary table if EXISTS vta; 
+            create temporary table vta(select  ven.date, ven.product_id, ven.quantity 
+            from dbo.billing ven where ven.date between @desde and @hasta);
+
+            drop temporary table if EXISTS precios; 
+            create temporary table precios(select max(pr.date) fecha, pr.product_id 
+            from prices pr inner join vta on pr.product_id = vta.product_id where pr.date <= vta.date group by pr.product_id); 
+            
+            select venta.date, (prices.price * venta.quantity) from dbo.billing venta inner join precios on venta.product_id = precios.product_id 
+            inner join products on precios.product_id = products.id_product 
+            inner join prices on precios.product_id = prices.product_id and precios.date = prices.date 
+            where products.name_product = @producto;";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
@@ -137,7 +149,7 @@ namespace TP1_SG2
             select customer_id
             from clir union cliw)
 
-            select venta.date, prices.price 
+            select venta.date, (prices.price * venta.quantity) 
             from dbo.billing venta inner join precios on venta.product_id = precios.product_id 
 	            inner join products on precios.product_id = products.id_product 
 	            inner join prices on precios.product_id = prices.product_id and precios.date = prices.date 
@@ -172,7 +184,59 @@ namespace TP1_SG2
 
             return dtVentas;
         }
-        
+
+
+
+        public static DataTable informeVendedores(int antiguedad)
+        {
+            DataTable dtVendedores = new DataTable();
+
+            string consulta =
+            @"drop temporary table if exists empleados;
+            create temporary table empleados(
+            select emp.employee_id, emp.full_name
+            from dbo.employee emp 
+            where datediff(year,emp.employment_date,'01/01/2009') = @antiguedad);
+
+            drop temporary table if EXISTS vta; 
+            create temporary table vta(
+            select  ven.date, ven.product_id, ven.quantity 
+            from dbo.billing ven 
+            where datepart(month,ven.date) = 2009);
+
+            drop temporary table if EXISTS precios; 
+            create temporary table precios(
+            select max(pr.date) fecha, pr.product_id, 
+            from prices pr inner join vta on pr.product_id = vta.product_id 
+            where pr.date <= vta.date group by pr.product_id);
+
+            select empleados.full_name, (prices.price * venta.quantity)
+            from dbo.billing venta inner join precios on venta.product_id = precios.product_id
+            inner join empleados on venta.employee_id = empleados.employee_id 
+            inner join prices on precios.product_id = prices.product_id and precios.date = prices.date;";
+
+
+            using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
+            {
+                SqlCommand cmdSelect = new SqlCommand(consulta, con);
+
+                cmdSelect.Parameters.Add("@antiguedad", SqlDbType.Int);
+
+                cmdSelect.Parameters["@antiguedad"].Value = antiguedad;
+                                
+
+                con.Open();
+
+                SqlDataReader readerVendedores = cmdSelect.ExecuteReader();
+
+                dtVendedores.Load(readerVendedores);
+
+                con.Close();
+            }
+
+            return dtVendedores;
+        }
+
         
     }
 }
