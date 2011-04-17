@@ -65,34 +65,37 @@ namespace TP1_SG2
             DataTable dtVentas = new DataTable();
 
             string consulta =
-            @"drop temporary table if EXISTS vta; 
-            create temporary table vta(select  ven.date, ven.product_id, ven.quantity 
-            from dbo.billing ven where ven.date between @desde and @hasta);
+            @"
+CREATE TABLE #vta (date smalldatetime, product_id int, quantity int)
+INSERT INTO #vta SELECT date, product_id, quantity  
+	FROM dbo.billing WHERE date between @desde and @hasta
+ 
 
-            drop temporary table if EXISTS precios; 
-            create temporary table precios(select max(pr.date) fecha, pr.product_id 
-            from prices pr inner join vta on pr.product_id = vta.product_id where pr.date <= vta.date group by pr.product_id); 
+CREATE TABLE #precios (date datetime, product_id int)
+INSERT INTO #precios SELECT max(pr.date), pr.product_id  
+	FROM dbo.prices pr inner join #vta on pr.product_id = #vta.product_id where pr.date <= #vta.date group by pr.product_id
+
             
-            select venta.date, (prices.price * venta.quantity) from dbo.billing venta inner join precios on venta.product_id = precios.product_id 
-            inner join products on precios.product_id = products.id_product 
-            inner join prices on precios.product_id = prices.product_id and precios.date = prices.date 
-            where products.name_product = @producto;";
+select #vta.date, (prices.price * #vta.quantity) from #vta inner join #precios on #vta.product_id = #precios.product_id
+inner join dbo.products on #precios.product_id = dbo.products.id_product 
+inner join dbo.prices on #precios.product_id = dbo.prices.product_id and #precios.date = dbo.prices.date 
+where dbo.products.name_product = @producto;";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
                 SqlCommand cmdSelect = new SqlCommand(consulta, con);
 
-                cmdSelect.Parameters.Add("@desde", SqlDbType.DateTime);
+                cmdSelect.Parameters.Add("@desde", SqlDbType.SmallDateTime);
 
                 cmdSelect.Parameters["@desde"].Value = desde;
 
-                cmdSelect.Parameters.Add("@hasta", SqlDbType.DateTime);
+                cmdSelect.Parameters.Add("@hasta", SqlDbType.SmallDateTime);
 
                 cmdSelect.Parameters["@hasta"].Value = hasta;
 
-                cmdSelect.Parameters.Add("@id", SqlDbType.Int);
+                cmdSelect.Parameters.Add("@producto", SqlDbType.VarChar);
 
-                cmdSelect.Parameters["@id"].Value = producto;
+                cmdSelect.Parameters["@producto"].Value = producto;
 
 
                 con.Open();

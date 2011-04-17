@@ -66,7 +66,7 @@ namespace TP1_SG2
 
             cbTipoBebida.DataSource = AccesoDatos.buscaProductos();
             cbTipoBebida.DisplayMember = "Producto";
-            //cbTipoBebida.ValueMember = "Producto";
+            
             
             for (int anio = 2006; anio <= 2009; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
             {
@@ -97,8 +97,7 @@ namespace TP1_SG2
 
             cbRegion.DataSource = AccesoDatos.buscaRegiones();
             cbRegion.DisplayMember = "Region";
-      //      cbRegion.ValueMember = "Region";
-
+      
 
             for (int anio = 2006; anio <= 2008; anio++)         //inicializo el Datatable con todos los años y bimestres entre las 2 fechas
             {
@@ -134,14 +133,15 @@ namespace TP1_SG2
         }
         
 
-        //ELIJO EL TIPO DE BEBIDA PARA EL PRIMER INFORMWE
+        //ELIJO EL TIPO DE BEBIDA PARA EL PRIMER INFORME
 
         private void cbTipoBebida_SelectedValueChanged(object sender, EventArgs e)
         {
             resetearMaxMin();            
 
             DataTable ventas = AccesoDatos.informeVentas(cbTipoBebida.SelectedValue.ToString(), DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
-
+            
+            MessageBox.Show(ventas.Rows[0]["Monto"].ToString());
                         
             foreach (DataRow dr in ventas.Rows)
             {
@@ -257,6 +257,8 @@ namespace TP1_SG2
             }
         
         }
+
+       
                
 
 
