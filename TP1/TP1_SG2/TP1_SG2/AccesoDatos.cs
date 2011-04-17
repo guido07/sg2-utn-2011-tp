@@ -15,7 +15,7 @@ namespace TP1_SG2
         {
             DataTable dtProductos = new DataTable();
 
-            string consulta = "select distinct products.name_product Nombre from products";
+            string consulta = "select distinct name_product Producto from dbo.products";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
@@ -39,7 +39,7 @@ namespace TP1_SG2
         {
             DataTable dtRegiones = new DataTable();
 
-            string consulta = "select regions.area Region from regions";
+            string consulta = "select distinct regions.area Region from dbo.regions";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
