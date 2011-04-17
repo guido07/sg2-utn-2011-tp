@@ -166,7 +166,7 @@ namespace TP1_SG2
         }
 
 
-        private void graficar()
+        private void graficar1()
         {
 
             grafico1.GraphPane = new GraphPane(grafico1.GraphPane.Rect, "", "t", "$");
@@ -187,10 +187,10 @@ namespace TP1_SG2
 
 
 
-            for (double i = 0; i < 5; i = i++)
+            for (int i = 0; i < 5; i = i++)
             {
                 x = (double)i;
-                y = 1;
+                y = Convert.ToDouble(dtVentas.Rows[i]["Monto"]);
 
                 list.Add(x, y);
 

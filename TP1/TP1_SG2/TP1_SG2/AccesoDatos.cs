@@ -141,8 +141,7 @@ namespace TP1_SG2
             from dbo.billing venta inner join precios on venta.product_id = precios.product_id 
 	            inner join products on precios.product_id = products.id_product 
 	            inner join prices on precios.product_id = prices.product_id and precios.date = prices.date 
-	            inner join clientes on precios.customer_id = clientes.customer_id
-            where products.name_product = @producto; ";
+	            inner join clientes on precios.customer_id = clientes.customer_id";
 
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
