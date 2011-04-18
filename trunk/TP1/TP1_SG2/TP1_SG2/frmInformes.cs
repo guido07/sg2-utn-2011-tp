@@ -144,43 +144,7 @@ namespace TP1_SG2
 
         //ELIJO EL TIPO DE BEBIDA PARA EL PRIMER INFORME
 
-        private void cbTipoBebida_SelectedValueChanged(object sender, EventArgs e)
-        {
-            resetearMaxMin();            
-
-            DataTable ventas = AccesoDatos.informeVentas(cbTipoBebida.SelectedValue.ToString(), DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
-                       
-                        
-            foreach (DataRow dr in ventas.Rows)
-            {
-                int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
-                double fec = DateTime.Parse(dr["Fecha"].ToString()).Month / 2;                  //calcula bimestre segun la fecha de venta
-                int bimestre = Convert.ToInt16(Math.Round(fec, MidpointRounding.ToEven));
-                                          
-
-                foreach (DataRow fila in dtVentas.Rows)
-                {
-                    if (Convert.ToInt16(fila["Año"]) == anio)
-                    {                                                               //BUSCA EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
-                        if (Convert.ToInt16(fila["Bimestre"]) == bimestre)
-                        {
-                            double monto = Convert.ToDouble(fila["Monto"]) + Convert.ToDouble(dr["Monto"]);
-
-                            fila["Monto"] = monto.ToString();
-
-                            if (Convert.ToDouble(fila["Monto"]) > max)
-                                max = Convert.ToDouble(fila["Monto"]);
-                            if (Convert.ToDouble(fila["Monto"]) < min)
-                                min = Convert.ToDouble(fila["Monto"]);
-                        }                        
-                    }
-                }
-       
-            }
-
-            graficar1();
-
-        }
+        
 
 
         private void graficar1()
@@ -267,6 +231,44 @@ namespace TP1_SG2
 
             }
         
+        }
+
+        private void btnInforme1_Click(object sender, EventArgs e)
+        {
+            resetearMaxMin();
+
+            DataTable ventas = AccesoDatos.informeVentas(cbTipoBebida.SelectedValue.ToString(), DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
+
+
+            foreach (DataRow dr in ventas.Rows)
+            {
+                int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
+                double fec = DateTime.Parse(dr["Fecha"].ToString()).Month / 2;                  //calcula bimestre segun la fecha de venta
+                int bimestre = Convert.ToInt16(Math.Round(fec, MidpointRounding.ToEven));
+
+
+                foreach (DataRow fila in dtVentas.Rows)
+                {
+                    if (Convert.ToInt16(fila["Año"]) == anio)
+                    {                                                              //BUSCA EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
+                      
+                        if (Convert.ToInt16(fila["Bimestre"]) == bimestre)
+                        {
+                            double monto = Convert.ToDouble(fila["Monto"]) + Convert.ToDouble(dr["Monto"]);
+
+                            fila["Monto"] = monto.ToString();
+
+                            if (Convert.ToDouble(fila["Monto"]) > max)
+                                max = Convert.ToDouble(fila["Monto"]);
+                            if (Convert.ToDouble(fila["Monto"]) < min)
+                                min = Convert.ToDouble(fila["Monto"]);
+                        }
+                    }
+                }
+
+            }
+
+            graficar1();
         }
 
        
