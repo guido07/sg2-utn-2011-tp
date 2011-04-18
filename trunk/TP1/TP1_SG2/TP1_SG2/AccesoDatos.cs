@@ -171,7 +171,7 @@ where dbo.products.name_product = @producto;";
 
                 cmdSelect.Parameters["@hasta"].Value = hasta;
 
-                cmdSelect.Parameters.Add("@area", SqlDbType.Int);
+                cmdSelect.Parameters.Add("@area", SqlDbType.VarChar);
 
                 cmdSelect.Parameters["@area"].Value = region;
 
