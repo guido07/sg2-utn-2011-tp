@@ -116,58 +116,50 @@ where dbo.products.name_product = @producto;";
         {
             DataTable dtVentas = new DataTable();
 
-            string consulta = 
-            @"drop temporary table if EXISTS vta; 
-            create temporary table vta(
-            select  ven.date, ven.product_id, ven.quantity 
+            string consulta =
+            @"CREATE TABLE #vta(date smallDateTime, product_id int, quantity int, customer_id int)
+            INSERT INTO #vta
+            SELECT  ven.date, ven.product_id, ven.quantity, ven.customer_id 
             from dbo.billing ven 
-            where ven.date between @desde and @hasta);
-
-            drop temporary table if EXISTS precios; 
-            create temporary table precios(select max(pr.date) fecha, pr.product_id,vta.customer_id 
-            from prices pr inner join vta on pr.product_id = vta.product_id 
-            where pr.date <= vta.date group by pr.product_id);
-
-            drop temporary table if exists ciudades;
-            create temporary table ciudades(
-            select regiones.city   
+            where ven.date between @desde and @hasta
+           
+            CREATE TABLE #precios(date DateTime, product_id int)
+            INSERT INTO #precios
+            SELECT  max(pr.date) , pr.product_id 
+            from prices pr inner join #vta on pr.product_id = #vta.product_id 
+            where pr.date <= #vta.date group by pr.product_id
+                       
+            CREATE TABLE #ciudades(city varchar(20))
+            INSERT INTO #ciudades
+            SELECT  regiones.city   
             from dbo.Regions regiones
-            where regiones.area = @area)
+            where regiones.area = @area
+                      
 
+            CREATE TABLE #clientes(customer_id int)
+	        INSERT INTO #clientes
+            select  customer_id
+            from dbo.customer_w clientew inner join #ciudades
+            on clientew.city = #ciudades.city 
+            union select customer_id
+            from dbo.customer_r clienter inner join #ciudades
+            on clienter.city = #ciudades.city
 
-            drop temporary table if exists clir;
-            create temporary table clir(
-            select clienter.customer_id
-            from dbo.customer_r clienter inner join ciudades
-            on clienter.city = ciudades.city)
-
-            drop temporary table if exists cliw;
-            create temporary table cliw(
-            select clientew.customer_id
-            from dbo.customer_w clientew inner join ciudades
-            on clientew.city = ciudades.city)
-
-            drop temporary table if exists clientes;
-            create temporary table clientes(
-            select customer_id
-            from clir union cliw)
-
-            select venta.date, (prices.price * venta.quantity) 
-            from dbo.billing venta inner join precios on venta.product_id = precios.product_id 
-	            inner join products on precios.product_id = products.id_product 
-	            inner join prices on precios.product_id = prices.product_id and precios.date = prices.date 
-	            inner join clientes on precios.customer_id = clientes.customer_id";
+            select #vta.date Fecha, (prices.price * #vta.quantity) Monto
+            from #vta inner join #precios on #vta.product_id = #precios.product_id 
+	              inner join prices on #precios.product_id = prices.product_id and #precios.date = prices.date 
+	              inner join #clientes on #vta.customer_id = #clientes.customer_id";
 
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
                 SqlCommand cmdSelect = new SqlCommand(consulta, con);
 
-                cmdSelect.Parameters.Add("@desde", SqlDbType.DateTime);
+                cmdSelect.Parameters.Add("@desde", SqlDbType.SmallDateTime);
 
                 cmdSelect.Parameters["@desde"].Value = desde;
 
-                cmdSelect.Parameters.Add("@hasta", SqlDbType.DateTime);
+                cmdSelect.Parameters.Add("@hasta", SqlDbType.SmallDateTime);
 
                 cmdSelect.Parameters["@hasta"].Value = hasta;
 
@@ -239,10 +231,11 @@ where dbo.products.name_product = @producto;";
             from dbo.Prices pr inner join dbo.Billing vta on pr.product_id = vta.product_id 
             where pr.date <= vta.date group by pr.product_id;
 
-            select #empleados.name_employ as Vendedor, (dbo.prices.price * #vta.qua) as Monto
+            select #empleados.name_employ as Vendedor, sum(dbo.prices.price * #vta.qua) as Monto
             from #vta inner join #precios on #vta.prod_id = #precios.prod_id
             inner join #empleados on #vta.emp = #empleados.employee_id 
-            inner join dbo.prices on #precios.prod_id = dbo.prices.product_id and #precios.date = dbo.prices.date";
+            inner join dbo.prices on #precios.prod_id = dbo.prices.product_id and #precios.date = dbo.prices.date
+            group by #empleados.name_employ";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {

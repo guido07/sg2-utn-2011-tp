@@ -33,10 +33,17 @@ namespace TP1_SG2
             ventas.Columns.Add("Monto");
 
 
+            //INICIALIZO DATATABLE INTERMEDIO DE regiones
+            regiones = new DataTable();
+            regiones.Columns.Add("Fecha");
+            regiones.Columns.Add("Monto");
+            
+            
             //INICIALIZO DATATABLE INTERMEDIO DE EMPLEADOS
             empleados = new DataTable();
             empleados.Columns.Add("Vendedor");
             empleados.Columns.Add("Monto");
+                    
 
 
             //INICIALIZO DATATABLE PARA EL PRIMER INFORME
@@ -244,11 +251,12 @@ namespace TP1_SG2
         {
             resetearMaxMin();
 
-            ventas = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
+            regiones = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
 
 
-            foreach (DataRow dr in ventas.Rows)
-            {
+            foreach (DataRow dr in regiones.Rows)
+            {                
+
                 int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
                 string mes = cultura.TextInfo.ToTitleCase(cultura.DateTimeFormat.MonthNames[Convert.ToInt16(dr["Fecha"])]);
 
@@ -256,7 +264,7 @@ namespace TP1_SG2
                 foreach (DataRow fila in dtRegiones.Rows)
                 {
                     if (Convert.ToInt16(fila["Año"]) == anio)
-                    {                                                               //BUSCA EL AÑO Y BIMESTRE DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
+                    {                                                               //BUSCA EL AÑO Y MES DENTRO DEL DATATABLE Y AL MONTO LE ACUMULA EL MONTO DE ESTA VENTA
                         if (fila["Mes"].ToString() == mes)
                         {
                             double monto = Convert.ToDouble(fila["Monto"]) + Convert.ToDouble(dr["Monto"]);
@@ -342,45 +350,92 @@ namespace TP1_SG2
             else
             {
 
-                dtVendedores.Rows.Add(dtVendedores.NewRow());
+                /*              dtVendedores.Rows.Add(dtVendedores.NewRow());
                 
-                foreach (DataRow dr in empleados.Rows)
-                {                    
+                              foreach (DataRow dr in empleados.Rows)
+                              {                    
 
-                    bool ok = true;
+                                  bool ok = true;
 
-                    for (int i = 0; i < dtVendedores.Rows.Count && ok == true; i++)
-                    {
-                        if (dr["Vendedor"] == dtVendedores.Rows[i]["Vendedor"])
-                        {
-                            double monto = Convert.ToDouble(dtVendedores.Rows[i]["Monto"]) + Convert.ToDouble(dr["Monto"]);
+                                  for (int i = 0; i < dtVendedores.Rows.Count && ok == true; i++)
+                                  {
+                                      if (dr["Vendedor"] == dtVendedores.Rows[i]["Vendedor"])
+                                      {
+                                          double monto = Convert.ToDouble(dtVendedores.Rows[i]["Monto"]) + Convert.ToDouble(dr["Monto"]);
 
-                            dtVendedores.Rows[i]["Monto"] = monto.ToString();
+                                          dtVendedores.Rows[i]["Monto"] = monto.ToString();
 
-                            ok = false;
-                        }
+                                          ok = false;
+                                      }
 
-                    }
+                                  }
 
-                    if (ok == true)
-                    {
-                        DataRow nuevo = dtVendedores.NewRow();
-                        nuevo["Vendedor"] = dr["Vendedor"];
-                        nuevo["Monto"] = dr["Monto"];
+                                  if (ok == true)
+                                  {
+                                      DataRow nuevo = dtVendedores.NewRow();
+                                      nuevo["Vendedor"] = dr["Vendedor"];
+                                      nuevo["Monto"] = dr["Monto"];
 
-                        dtVendedores.Rows.Add(nuevo);
+                                      dtVendedores.Rows.Add(nuevo);
 
-                    }
+                                  }
 
-                }
+                              }   
 
+             */
 
+                grilla3.DataSource = empleados;
+
+                graficar3();
             }
 
             
 
         }
 
+
+
+        private void graficar3()
+        {           
+
+            grafico3.GraphPane = new GraphPane(grafico3.GraphPane.Rect, "", "t", "$");
+
+            GraphPane myPane = grafico3.GraphPane;
+
+            // Set the Titles
+
+            myPane.Title.Text = "";
+            myPane.XAxis.Title.Text = "t";
+            myPane.YAxis.Title.Text = "$";
+
+
+
+            double x, y;
+
+            PointPairList list = new PointPairList();
+
+
+            int i = 1;
+            for (; i <= dtVendedores.Rows.Count; i++)                                    
+            {
+                x = (double)i;
+                y = Convert.ToDouble(dtVendedores.Rows[i - 1]["Monto"]);        
+
+                list.Add(x, y);
+
+            }
+
+
+
+            BarItem myCurve = myPane.AddBar("", list, Color.SteelBlue);
+                        
+            myPane.XAxis.Scale.Max = i;
+            myPane.YAxis.Scale.Max = i;
+
+            grafico3.AxisChange();
+            grafico3.Refresh();
+
+        }
 
 
 
