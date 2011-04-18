@@ -212,6 +212,7 @@ namespace TP1_SG2
         private void btnInforme1_Click(object sender, EventArgs e)
         {
             resetearMaxMin();
+            
 
             DataTable ventas = AccesoDatos.informeVentas(cbTipoBebida.SelectedValue.ToString(), DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
 
@@ -250,15 +251,19 @@ namespace TP1_SG2
         private void btnInforme2_Click(object sender, EventArgs e)
         {
             resetearMaxMin();
+            
 
             regiones = AccesoDatos.informeRegiones(cbRegion.SelectedValue.ToString(), DateTime.Parse("01/01/2006"), DateTime.Parse("31/12/2008"));
 
 
             foreach (DataRow dr in regiones.Rows)
-            {                
+            {
+                int month = int.Parse(dr["Fecha"].ToString().Substring(3, 2));
 
+                string mes = cultura.TextInfo.ToTitleCase(cultura.DateTimeFormat.MonthNames[month]);
+                
                 int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
-                string mes = cultura.TextInfo.ToTitleCase(cultura.DateTimeFormat.MonthNames[Convert.ToInt16(dr["Fecha"])]);
+                
 
 
                 foreach (DataRow fila in dtRegiones.Rows)
@@ -278,11 +283,10 @@ namespace TP1_SG2
 
                         }
                     }
-                }
-
-                graficar2();
-
+                }               
+                
             }
+            graficar2();
         }
 
 
@@ -307,10 +311,10 @@ namespace TP1_SG2
 
 
             int i = 1;
-            for (; i <= 22; i++)                                    //SON 22 BIMESTRES
+            for (; i <= 36; i++)                                    
             {
                 x = (double)i;
-                y = Convert.ToDouble(dtVentas.Rows[i - 1]["Monto"]);        //USAMOS i-1 PARA MOSTRAR MEJOR LOS BIMESTRES
+                y = Convert.ToDouble(dtRegiones.Rows[i - 1]["Monto"]);        //USAMOS i-1 PARA MOSTRAR MEJOR LOS BIMESTRES
 
                 list.Add(x, y);
 
@@ -323,8 +327,7 @@ namespace TP1_SG2
             myCurve.Symbol.Fill = new Fill(Color.LightBlue);
             myCurve.Symbol.Size = 10;
 
-
-
+                       
             myPane.XAxis.Scale.Max = i;
             myPane.YAxis.Scale.Max = max * 1.2;
 
@@ -338,6 +341,7 @@ namespace TP1_SG2
         private void btnInforme3_Click(object sender, EventArgs e)
         {
             resetearMaxMin();
+            dtVendedores.Clear();
 
             empleados = AccesoDatos.informeVendedores(Convert.ToInt16(antiguedad.Value));
 

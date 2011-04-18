@@ -117,38 +117,23 @@ where dbo.products.name_product = @producto;";
             DataTable dtVentas = new DataTable();
 
             string consulta =
-            @"CREATE TABLE #vta(date smallDateTime, product_id int, quantity int, customer_id int)
+            @"CREATE TABLE #vta(date smallDateTime, product_id int, quantity int)
             INSERT INTO #vta
-            SELECT  ven.date, ven.product_id, ven.quantity, ven.customer_id 
+            SELECT  ven.date, ven.product_id, ven.quantity 
             from dbo.billing ven 
             where ven.date between @desde and @hasta
+            and ven.region = @region 
            
             CREATE TABLE #precios(date DateTime, product_id int)
             INSERT INTO #precios
             SELECT  max(pr.date) , pr.product_id 
             from prices pr inner join #vta on pr.product_id = #vta.product_id 
             where pr.date <= #vta.date group by pr.product_id
-                       
-            CREATE TABLE #ciudades(city varchar(20))
-            INSERT INTO #ciudades
-            SELECT  regiones.city   
-            from dbo.Regions regiones
-            where regiones.area = @area
-                      
-
-            CREATE TABLE #clientes(customer_id int)
-	        INSERT INTO #clientes
-            select  customer_id
-            from dbo.customer_w clientew inner join #ciudades
-            on clientew.city = #ciudades.city 
-            union select customer_id
-            from dbo.customer_r clienter inner join #ciudades
-            on clienter.city = #ciudades.city
+                          
 
             select #vta.date Fecha, (prices.price * #vta.quantity) Monto
             from #vta inner join #precios on #vta.product_id = #precios.product_id 
-	              inner join prices on #precios.product_id = prices.product_id and #precios.date = prices.date 
-	              inner join #clientes on #vta.customer_id = #clientes.customer_id";
+	              inner join prices on #precios.product_id = prices.product_id and #precios.date = prices.date";
 
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
@@ -163,9 +148,9 @@ where dbo.products.name_product = @producto;";
 
                 cmdSelect.Parameters["@hasta"].Value = hasta;
 
-                cmdSelect.Parameters.Add("@area", SqlDbType.VarChar);
+                cmdSelect.Parameters.Add("@region", SqlDbType.VarChar);
 
-                cmdSelect.Parameters["@area"].Value = region;
+                cmdSelect.Parameters["@region"].Value = region;
 
 
                 con.Open();
