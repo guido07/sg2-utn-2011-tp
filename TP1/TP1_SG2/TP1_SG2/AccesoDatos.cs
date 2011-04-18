@@ -194,7 +194,7 @@ where dbo.products.name_product = @producto;";
         {
             DataTable dtVendedores = new DataTable();
 
-            string consulta =
+ /*           string consulta =
             @"drop temporary table if exists empleados;
             create temporary table empleados(
             select emp.employee_id, emp.full_name
@@ -217,7 +217,32 @@ where dbo.products.name_product = @producto;";
             from dbo.billing venta inner join precios on venta.product_id = precios.product_id
             inner join empleados on venta.employee_id = empleados.employee_id 
             inner join prices on precios.product_id = prices.product_id and precios.date = prices.date;";
+*/
 
+
+            string consulta =
+            @"create table #empleados( employee_id int, name_employ varchar(50))
+            insert into #empleados 
+            select emp.employee_id, emp.full_name
+            from dbo.employee emp 
+            where datediff(year,emp.employment_date,'01/01/2009') = @antiguedad;
+            
+            create table #vta(date smalldatetime, prod_id int, qua int, emp int)
+            insert into #vta
+            select ven.date, ven.product_id, ven.quantity, ven.employee_id 
+            from dbo.billing ven 
+            where datepart(year,ven.date) = '2009';
+            
+            create table #precios(date DateTime, prod_id int)
+            insert into #precios
+            select max(pr.date) fecha, pr.product_id
+            from dbo.Prices pr inner join dbo.Billing vta on pr.product_id = vta.product_id 
+            where pr.date <= vta.date group by pr.product_id;
+
+            select #empleados.name_employ as Vendedor, (dbo.prices.price * #vta.qua) as Monto
+            from #vta inner join #precios on #vta.prod_id = #precios.prod_id
+            inner join #empleados on #vta.emp = #empleados.employee_id 
+            inner join dbo.prices on #precios.prod_id = dbo.prices.product_id and #precios.date = dbo.prices.date";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
