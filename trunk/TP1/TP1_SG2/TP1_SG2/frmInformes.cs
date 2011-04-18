@@ -16,7 +16,6 @@ namespace TP1_SG2
     {
         public DataTable ventas;
         public DataTable regiones;
-        public DataTable empleados;
         public DataTable dtVentas;
         public DataTable dtRegiones;
         public DataTable dtVendedores;
@@ -38,12 +37,7 @@ namespace TP1_SG2
             regiones.Columns.Add("Fecha");
             regiones.Columns.Add("Monto");
             
-            
-            //INICIALIZO DATATABLE INTERMEDIO DE EMPLEADOS
-            empleados = new DataTable();
-            empleados.Columns.Add("Vendedor");
-            empleados.Columns.Add("Monto");
-                    
+               
 
 
             //INICIALIZO DATATABLE PARA EL PRIMER INFORME
@@ -258,12 +252,12 @@ namespace TP1_SG2
 
             foreach (DataRow dr in regiones.Rows)
             {
-                int month = int.Parse(dr["Fecha"].ToString().Substring(3, 2));
+                int month = int.Parse(dr["Fecha"].ToString().Substring(3, 2))-1;
 
                 string mes = cultura.TextInfo.ToTitleCase(cultura.DateTimeFormat.MonthNames[month]);
                 
                 int anio = Convert.ToInt16(DateTime.Parse(dr["Fecha"].ToString()).Year);
-                
+                              
 
 
                 foreach (DataRow fila in dtRegiones.Rows)
@@ -341,54 +335,29 @@ namespace TP1_SG2
         private void btnInforme3_Click(object sender, EventArgs e)
         {
             resetearMaxMin();
-            dtVendedores.Clear();
+            
+            dtVendedores = AccesoDatos.informeVendedores(Convert.ToInt16(antiguedad.Value));
 
-            empleados = AccesoDatos.informeVendedores(Convert.ToInt16(antiguedad.Value));
-
-            if (empleados.Rows.Count == 0)
+            if (dtVendedores.Rows.Count == 0)
             {
                 string mensaje = "No hay empleados con " + antiguedad.Value.ToString() + " años de antigüedad";
                 MessageBox.Show(mensaje);
 
             }
             else
-            {
+            {          
 
-                /*              dtVendedores.Rows.Add(dtVendedores.NewRow());
-                
-                              foreach (DataRow dr in empleados.Rows)
-                              {                    
 
-                                  bool ok = true;
+                grilla3.DataSource = dtVendedores;
 
-                                  for (int i = 0; i < dtVendedores.Rows.Count && ok == true; i++)
-                                  {
-                                      if (dr["Vendedor"] == dtVendedores.Rows[i]["Vendedor"])
-                                      {
-                                          double monto = Convert.ToDouble(dtVendedores.Rows[i]["Monto"]) + Convert.ToDouble(dr["Monto"]);
+                foreach (DataRow fila in dtVendedores.Rows)
+                {
+                    if (Convert.ToDouble(fila["Monto"]) > max)
+                        max = Convert.ToDouble(fila["Monto"]);
+                    if (Convert.ToDouble(fila["Monto"]) < min)
+                        min = Convert.ToDouble(fila["Monto"]);
+                }
 
-                                          dtVendedores.Rows[i]["Monto"] = monto.ToString();
-
-                                          ok = false;
-                                      }
-
-                                  }
-
-                                  if (ok == true)
-                                  {
-                                      DataRow nuevo = dtVendedores.NewRow();
-                                      nuevo["Vendedor"] = dr["Vendedor"];
-                                      nuevo["Monto"] = dr["Monto"];
-
-                                      dtVendedores.Rows.Add(nuevo);
-
-                                  }
-
-                              }   
-
-             */
-
-                grilla3.DataSource = empleados;
 
                 graficar3();
             }
@@ -434,7 +403,7 @@ namespace TP1_SG2
             BarItem myCurve = myPane.AddBar("", list, Color.SteelBlue);
                         
             myPane.XAxis.Scale.Max = i;
-            myPane.YAxis.Scale.Max = i;
+            myPane.YAxis.Scale.Max = max * 1.2;
 
             grafico3.AxisChange();
             grafico3.Refresh();
