@@ -65,21 +65,26 @@ namespace TP1_SG2
             DataTable dtVentas = new DataTable();
 
             string consulta =
-            @"
-CREATE TABLE #vta (date smalldatetime, product_id int, quantity int)
-INSERT INTO #vta SELECT date, product_id, quantity  
-	FROM dbo.billing WHERE date between @desde and @hasta
- 
+            @"CREATE TABLE #vta (date smalldatetime, product_id int, quantity int)
+            INSERT INTO #vta 
+            SELECT date, product_id, quantity
+            FROM dbo.billing  
+            WHERE date between '2006-01-01' and '2008-31-12'
+            UNION
+            SELECT b.date, b.product_id, bd.quantity
+            FROM dbo.billing as b
+            INNER JOIN dbo.billing_detail as bd
+            ON b.billing_id = bd.billing_id
+            WHERE date between '2009-01-01' and '2009-31-08'
 
-CREATE TABLE #precios (date datetime, product_id int)
-INSERT INTO #precios SELECT max(pr.date), pr.product_id  
-	FROM dbo.prices pr inner join #vta on pr.product_id = #vta.product_id where pr.date <= #vta.date group by pr.product_id
+            CREATE TABLE #precios (date datetime, product_id int)
+            INSERT INTO #precios SELECT max(pr.date), pr.product_id  
+            FROM dbo.prices pr inner join #vta on pr.product_id = #vta.product_id where pr.date <= #vta.date group by pr.product_id
 
-            
-select #vta.date Fecha, (prices.price * #vta.quantity) Monto from #vta inner join #precios on #vta.product_id = #precios.product_id
-inner join dbo.products on #precios.product_id = dbo.products.id_product 
-inner join dbo.prices on #precios.product_id = dbo.prices.product_id and #precios.date = dbo.prices.date 
-where dbo.products.name_product = @producto;";
+            select #vta.date Fecha, (prices.price * #vta.quantity) Monto from #vta inner join #precios on #vta.product_id = #precios.product_id
+            inner join dbo.products on #precios.product_id = dbo.products.id_product 
+            inner join dbo.prices on #precios.product_id = dbo.prices.product_id and #precios.date = dbo.prices.date 
+            where dbo.products.name_product = @producto;";
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
             {
@@ -127,13 +132,14 @@ where dbo.products.name_product = @producto;";
             CREATE TABLE #precios(date DateTime, product_id int)
             INSERT INTO #precios
             SELECT  max(pr.date) , pr.product_id 
-            from prices pr inner join #vta on pr.product_id = #vta.product_id 
+            from dbo.prices pr inner join #vta on pr.product_id = #vta.product_id 
             where pr.date <= #vta.date group by pr.product_id
                           
 
-            select #vta.date Fecha, (prices.price * #vta.quantity) Monto
+            select #vta.date Fecha, (dbo.prices.price * #vta.quantity) Monto
             from #vta inner join #precios on #vta.product_id = #precios.product_id 
-	              inner join prices on #precios.product_id = prices.product_id and #precios.date = prices.date";
+	              inner join dbo.prices on #precios.product_id = dbo.prices.product_id and #precios.date = dbo.prices.date
+            ORDER BY #vta.date";
 
 
             using (SqlConnection con = new SqlConnection(Parametros.getConnectionString()))
@@ -206,17 +212,17 @@ where dbo.products.name_product = @producto;";
             
             create table #vta(date smalldatetime, prod_id int, qua int, emp int)
             insert into #vta
-            select ven.date, ven.product_id, ven.quantity, ven.employee_id 
-            from dbo.billing ven 
+            select ven.date, bd.product_id, bd.quantity, ven.employee_id 
+            from dbo.billing ven inner join dbo.billing_detail bd on ven.billing_id = bd.billing_id  
             where datepart(year,ven.date) = '2009';
             
             create table #precios(date DateTime, prod_id int)
             insert into #precios
             select max(pr.date) fecha, pr.product_id
-            from dbo.Prices pr inner join dbo.Billing vta on pr.product_id = vta.product_id 
-            where pr.date <= vta.date group by pr.product_id;
+            from dbo.Prices pr inner join #vta on pr.product_id = #vta.prod_id 
+            where pr.date <= #vta.date group by pr.product_id;
 
-            select #empleados.name_employ as Vendedor, sum(dbo.prices.price * #vta.qua) as Monto
+            select #empleados.name_employ Vendedor, sum(dbo.prices.price * #vta.qua) Monto
             from #vta inner join #precios on #vta.prod_id = #precios.prod_id
             inner join #empleados on #vta.emp = #empleados.employee_id 
             inner join dbo.prices on #precios.prod_id = dbo.prices.product_id and #precios.date = dbo.prices.date
