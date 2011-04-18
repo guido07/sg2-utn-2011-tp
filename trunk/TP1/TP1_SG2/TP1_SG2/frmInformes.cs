@@ -15,6 +15,8 @@ namespace TP1_SG2
     public partial class frmInformes : Form
     {
         public DataTable ventas;
+        public DataTable regiones;
+        public DataTable empleados;
         public DataTable dtVentas;
         public DataTable dtRegiones;
         public DataTable dtVendedores;
@@ -25,10 +27,16 @@ namespace TP1_SG2
         {
             InitializeComponent();
 
-            //INICIALIZO DATATABLE INTERMEDIO
+            //INICIALIZO DATATABLE INTERMEDIO DE VENTAS
             ventas = new DataTable();
             ventas.Columns.Add("Fecha");
             ventas.Columns.Add("Monto");
+
+
+            //INICIALIZO DATATABLE INTERMEDIO DE EMPLEADOS
+            empleados = new DataTable();
+            empleados.Columns.Add("Vendedor");
+            empleados.Columns.Add("Monto");
 
 
             //INICIALIZO DATATABLE PARA EL PRIMER INFORME
@@ -264,6 +272,8 @@ namespace TP1_SG2
                     }
                 }
 
+                graficar2();
+
             }
         }
 
@@ -310,13 +320,73 @@ namespace TP1_SG2
             myPane.XAxis.Scale.Max = i;
             myPane.YAxis.Scale.Max = max * 1.2;
 
-            grafico1.AxisChange();
-            grafico1.Refresh();
+            grafico2.AxisChange();
+            grafico2.Refresh();
 
         }
 
-       
-               
+
+
+        private void btnInforme3_Click(object sender, EventArgs e)
+        {
+            resetearMaxMin();
+
+            empleados = AccesoDatos.informeVendedores(Convert.ToInt16(antiguedad.Value));
+
+            if (empleados.Rows.Count == 0)
+            {
+                string mensaje = "No hay empleados con " + antiguedad.Value.ToString() + " años de antigüedad";
+                MessageBox.Show(mensaje);
+
+            }
+            else
+            {
+
+                dtVendedores.Rows.Add(dtVendedores.NewRow());
+                
+                foreach (DataRow dr in empleados.Rows)
+                {                    
+
+                    bool ok = true;
+
+                    for (int i = 0; i < dtVendedores.Rows.Count && ok == true; i++)
+                    {
+                        if (dr["Vendedor"] == dtVendedores.Rows[i]["Vendedor"])
+                        {
+                            double monto = Convert.ToDouble(dtVendedores.Rows[i]["Monto"]) + Convert.ToDouble(dr["Monto"]);
+
+                            dtVendedores.Rows[i]["Monto"] = monto.ToString();
+
+                            ok = false;
+                        }
+
+                    }
+
+                    if (ok == true)
+                    {
+                        DataRow nuevo = dtVendedores.NewRow();
+                        nuevo["Vendedor"] = dr["Vendedor"];
+                        nuevo["Monto"] = dr["Monto"];
+
+                        dtVendedores.Rows.Add(nuevo);
+
+                    }
+
+                }
+
+
+            }
+
+            
+
+        }
+
+
+
+
+
+
+
 
 
 
