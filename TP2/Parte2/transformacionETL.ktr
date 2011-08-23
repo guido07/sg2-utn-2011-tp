@@ -93,6 +93,31 @@
     </attributes>
   </connection>
   <connection>
+    <name>conexion_TDCDW</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>TDC_DW</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>Conexion_TDCStaging</name>
     <server>localhost</server>
     <type>MYSQL</type>
@@ -118,9 +143,9 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Fuentes Mayoristas</from><to>Mayoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuentes Minoristas</from><to>Minoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>CSV file input</from><to>Productos Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Ventas</from><to>Ventas Staging</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Fuentes Mayoristas</from><to>Mayoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuentes Minoristas</from><to>Minoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuentes Productos</from><to>Productos Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Ventas</from><to>Ventas Staging</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>CSV file input</name>
+    <name>Fuentes Productos</name>
     <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -129,7 +154,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>E:\NICO\UTN\Sistemas de Gestion II\Trabajos Practicos\TP2\Parte2\Datos tp1\Products.txt</filename>
+    <filename>E:\NICO\UTN\Sistemas de Gestion II\Datos\Products.txt</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -185,6 +210,33 @@
     </step>
 
   <step>
+    <name>Fuente Ventas</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>conexion_FuenteVentas</connection>
+    <sql>SELECT *
+FROM billing
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>261</xloc>
+      <yloc>296</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Fuentes Mayoristas</name>
     <type>getXMLData</type>
     <description/>
@@ -208,7 +260,7 @@
     <rownum_field/>
     <encoding>UTF-8</encoding>
     <file>
-      <name>E:\NICO\UTN\Sistemas de Gestion II\Trabajos Practicos\TP2\Parte2\Datos tp1\Customer_W.xml</name>
+      <name>E:\NICO\UTN\Sistemas de Gestion II\Datos\Customer_W.xml</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -290,7 +342,7 @@
     <rownum_field/>
     <encoding>UTF-8</encoding>
     <file>
-      <name>E:\NICO\UTN\Sistemas de Gestion II\Trabajos Practicos\TP2\Parte2\Datos tp1\Customer_R.xml</name>
+      <name>E:\NICO\UTN\Sistemas de Gestion II\Datos\Customer_R.xml</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -483,33 +535,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>527</xloc>
       <yloc>206</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Fuente Ventas</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>conexion_FuenteVentas</connection>
-    <sql>SELECT *
-FROM billing
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>261</xloc>
-      <yloc>296</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
