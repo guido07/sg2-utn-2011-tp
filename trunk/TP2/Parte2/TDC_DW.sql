@@ -22,7 +22,7 @@ USE `TDC_DW`;
 DROP TABLE IF EXISTS `antiguedad`;
 
 CREATE TABLE `antiguedad` (
-  `cod_antiguedad` int(11) NOT NULL,
+  `cod_antiguedad` int(11) NOT NULL AUTO_INCREMENT,
   `anios` int(11) DEFAULT NULL,
   PRIMARY KEY (`cod_antiguedad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -749,7 +749,7 @@ COMMIT;
 DROP TABLE IF EXISTS `edadempleado`;
 
 CREATE TABLE `edadempleado` (
-  `cod_edad_empleado` int(11) NOT NULL,
+  `cod_edad_empleado` int(11) NOT NULL AUTO_INCREMENT,
   `edad` int(11) NOT NULL,
   PRIMARY KEY (`cod_edad_empleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -761,7 +761,7 @@ CREATE TABLE `edadempleado` (
 DROP TABLE IF EXISTS `edadesclientes`;
 
 CREATE TABLE `edadesclientes` (
-  `cod_edad_cliente` int(11) NOT NULL,
+  `cod_edad_cliente` int(11) NOT NULL AUTO_INCREMENT,
   `edad` int(11) NOT NULL,
   `grupo` varchar(20) NOT NULL,
   PRIMARY KEY (`cod_edad_cliente`)
@@ -787,8 +787,8 @@ CREATE TABLE `empleado` (
 DROP TABLE IF EXISTS `presentacion`;
 
 CREATE TABLE `presentacion` (
-  `cod_presentacion` int(11) NOT NULL,
-  `presentacion` varchar(20) NOT NULL,
+  `cod_presentacion` int(11) NOT NULL AUTO_INCREMENT,
+  `presentacion` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_presentacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -800,7 +800,7 @@ DROP TABLE IF EXISTS `productos`;
 
 CREATE TABLE `productos` (
   `cod_producto` int(11) NOT NULL,
-  `detalle` varchar(20) NOT NULL,
+  `detalle` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_producto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -811,7 +811,7 @@ CREATE TABLE `productos` (
 DROP TABLE IF EXISTS `regiones`;
 
 CREATE TABLE `regiones` (
-  `cod_zona` int(11) NOT NULL,
+  `cod_zona` int(11) NOT NULL AUTO_INCREMENT,
   `zona` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`cod_zona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -823,7 +823,7 @@ CREATE TABLE `regiones` (
 DROP TABLE IF EXISTS `sexo`;
 
 CREATE TABLE `sexo` (
-  `cod_sexo` int(11) NOT NULL,
+  `cod_sexo` int(11) NOT NULL AUTO_INCREMENT,
   `sexo` varchar(20) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`cod_sexo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -835,7 +835,7 @@ CREATE TABLE `sexo` (
 DROP TABLE IF EXISTS `tiempo`;
 
 CREATE TABLE `tiempo` (
-  `cod_tiempo` int(11) NOT NULL,
+  `cod_tiempo` date NOT NULL,
   `mes` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
   `trimestre` int(11) DEFAULT NULL,
   `año` int(11) DEFAULT NULL,
@@ -849,8 +849,8 @@ CREATE TABLE `tiempo` (
 DROP TABLE IF EXISTS `tipobebida`;
 
 CREATE TABLE `tipobebida` (
-  `cod_tipobebida` int(11) NOT NULL,
-  `desc_tipo` varchar(20) NOT NULL,
+  `cod_tipobebida` int(11) NOT NULL AUTO_INCREMENT,
+  `desc_tipo` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_tipobebida`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -868,22 +868,21 @@ CREATE TABLE `ventas` (
   `cod_edad_empleado` int(11) NOT NULL,
   `cod_edad_cliente` int(11) NOT NULL,
   `cod_zona` int(11) NOT NULL,
-  `cod_tiempo` int(11) NOT NULL,
+  `cod_tiempo` date NOT NULL,
   `cod_antiguedad` int(11) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
   `litros` float(9,3) DEFAULT NULL,
   `monto` float(9,3) DEFAULT NULL,
   PRIMARY KEY (`cod_cliente`,`cod_sexo`,`cod_producto`,`cod_empleado`,`cod_edad_empleado`,`cod_edad_cliente`,`cod_zona`,`cod_tiempo`,`cod_antiguedad`),
+  KEY `FK_tiempo_ventas` (`cod_tiempo`),
   KEY `FK_sexo_ventas` (`cod_sexo`),
   KEY `FK_productos_ventas` (`cod_producto`),
   KEY `FK_empleados_ventas` (`cod_empleado`),
   KEY `FK_edadcli_ventas` (`cod_edad_cliente`),
   KEY `FK_edademp_ventas` (`cod_edad_empleado`),
   KEY `FK_region_ventas` (`cod_zona`),
-  KEY `FK_tiempo_ventas` (`cod_tiempo`),
   KEY `FK_antiguedad_ventas` (`cod_antiguedad`),
   CONSTRAINT `FK_antiguedad_ventas` FOREIGN KEY (`cod_antiguedad`) REFERENCES `antiguedad` (`cod_antiguedad`),
-  CONSTRAINT `FK_clientes_ventas` FOREIGN KEY (`cod_cliente`) REFERENCES `clientes` (`cod_cliente`),
   CONSTRAINT `FK_edadcli_ventas` FOREIGN KEY (`cod_edad_cliente`) REFERENCES `edadesclientes` (`cod_edad_cliente`),
   CONSTRAINT `FK_edademp_ventas` FOREIGN KEY (`cod_edad_empleado`) REFERENCES `edadempleado` (`cod_edad_empleado`),
   CONSTRAINT `FK_empleados_ventas` FOREIGN KEY (`cod_empleado`) REFERENCES `empleado` (`cod_empleado`),
