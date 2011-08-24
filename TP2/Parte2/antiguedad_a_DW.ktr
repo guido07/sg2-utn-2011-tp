@@ -199,71 +199,27 @@ from empleados</sql>
     <compatible>N</compatible>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;recibe la fecha como un string en formato español
-&#47;&#47;devuelve un entero con los años. Devuelve false en caso de que la fecha sea incorrecta o mayor que el dia actual
-function calcular_antiguedad(fecha){
-
-    &#47;&#47;calculo la fecha de hoy
-    hoy=new Date()
-    &#47;&#47;alert(hoy)
-
-    &#47;&#47;calculo la fecha que recibo
-    &#47;&#47;La descompongo en un array
-    var array_fecha = fecha.split(&quot;&#47;&quot;)
-    &#47;&#47;si el array no tiene tres partes, la fecha es incorrecta
-    if (array_fecha.length!=3)
-       return false
-
-    &#47;&#47;compruebo que los ano, mes, dia son correctos
-    var ano
-    ano = parseInt(array_fecha[2]);
-    if (isNaN(ano))
-       return false
-
-    var mes
-    mes = parseInt(array_fecha[1]);
-    if (isNaN(mes))
-       return false
-
-    var dia
-    dia = parseInt(array_fecha[0]);
-    if (isNaN(dia))
-       return false
-
-
-    &#47;&#47;si el año de la fecha que recibo solo tiene 2 cifras hay que cambiarlo a 4
-    if (ano&lt;=99)
-       ano +=1900
-
-    &#47;&#47;resto los años de las dos fechas
-    edad=hoy.getYear()- ano - 1; &#47;&#47;-1 porque no se si ha cumplido años ya este año
-
-    &#47;&#47;si resto los meses y me da menor que 0 entonces no ha cumplido años. Si da mayor si ha cumplido
-    if (hoy.getMonth() + 1 - mes &lt; 0) &#47;&#47;+ 1 porque los meses empiezan en 0
-       return edad
-    if (hoy.getMonth() + 1 - mes &gt; 0)
-       return edad+1
-
-    &#47;&#47;entonces es que eran iguales. miro los dias
-    &#47;&#47;si resto los dias y me da menor que 0 entonces no ha cumplido años. Si da mayor o igual si ha cumplido
-    if (hoy.getUTCDate() - dia &gt;= 0)
-       return edad + 1
-
-    return edad
-}
-
-var anios = calcular_antiguedad(date2str(fechaingreso,&quot;dd.MM.yyyy&quot;));</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>calcular_antiguedad</name>
-        <rename>calcular_antiguedad</rename>
-        <type>String</type>
+        <jsScript_script>
+var fechaIng = new Date(fechaingreso);
+var hoy = new Date();
+var anios = dateDiff(fechaIng,hoy,&quot;y&quot;);</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>fechaIng</name>
+        <rename>fechaIng</rename>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>hoy</name>
+        <rename>hoy</rename>
+        <type>Date</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
       </field>      <field>        <name>anios</name>
         <rename>anios</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>

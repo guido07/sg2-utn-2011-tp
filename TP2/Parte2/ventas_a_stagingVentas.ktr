@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Transformación 1</name>
+    <name>ventas_a_stagingVentas</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -68,6 +68,31 @@
   <notepads>
   </notepads>
   <connection>
+    <name>conexion_TDCDW</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>TDC_DW</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>Conexion_TDCStaging</name>
     <server>localhost</server>
     <type>MYSQL</type>
@@ -94,39 +119,6 @@
   </connection>
   <order>
   <hop> <from>Ventas Staging</from><to>Convertir Presentacion</to><enabled>Y</enabled> </hop>  <hop> <from>Convertir Presentacion</from><to>Staging Ventas en Staging</to><enabled>Y</enabled> </hop>  </order>
-  <step>
-    <name>Ventas Staging</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <sql>select cod_cliente, date(fecha) as fecha,
-productos.presentacion,
-sum(Detalle_Ventas.cantidad) as cantidad
-from
-ventas inner join Detalle_ventas on
-Ventas.cod_venta = Detalle_ventas.cod_venta
-inner join Productos on
-Detalle_ventas.cod_producto = Productos.cod_producto
-group by 1,2,3</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>205</xloc>
-      <yloc>178</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Convertir Presentacion</name>
     <type>ScriptValueMod</type>
@@ -213,6 +205,39 @@ default: litrosNumerico=0;}</jsScript_script>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>637</xloc>
       <yloc>182</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ventas Staging</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_TDCStaging</connection>
+    <sql>select cod_cliente, date(fecha) as fecha,
+productos.presentacion,
+sum(detalle_ventas.cantidad) as cantidad
+from
+ventas inner join detalle_ventas on
+ventas.cod_venta = detalle_ventas.cod_venta
+inner join productos on
+detalle_ventas.cod_producto = productos.cod_producto
+group by 1,2,3</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>205</xloc>
+      <yloc>178</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
