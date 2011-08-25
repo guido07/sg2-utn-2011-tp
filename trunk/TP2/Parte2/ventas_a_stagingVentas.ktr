@@ -218,7 +218,7 @@ default: litrosNumerico=0;}</jsScript_script>
            <schema_name/>
            </partitioning>
     <connection>Conexion_TDCStaging</connection>
-    <sql>select cod_cliente, date(fecha) as fecha,
+    <sql>select cod_cliente,cod_empleado, region,cod_venta, date(fecha) as fecha,
 productos.presentacion,
 sum(detalle_ventas.cantidad) as cantidad
 from
