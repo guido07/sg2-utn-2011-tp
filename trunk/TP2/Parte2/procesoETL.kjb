@@ -100,7 +100,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>138</xloc>
+      <xloc>99</xloc>
       <yloc>95</yloc>
       </entry>
     <entry>
@@ -117,7 +117,8 @@ delete from regiones;
 delete from descuentos;
 delete from precios;
 delete from feriados;
-delete from empleados;</sql>
+delete from empleados;
+delete from stagingtipo;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -188,7 +189,14 @@ delete from antiguedad;
 delete from edadempleado;
 delete from edadesclientes;
 delete from sexo;
-delete from empleado;</sql>
+delete from empleado;
+ALTER TABLE edadempleado AUTO_INCREMENT =1;
+ALTER TABLE antiguedad AUTO_INCREMENT =1;
+ALTER TABLE edadesclientes AUTO_INCREMENT =1;
+ALTER TABLE tipobebida AUTO_INCREMENT =1;
+ALTER TABLE sexo AUTO_INCREMENT =1;
+ALTER TABLE presentacion AUTO_INCREMENT =1;
+ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -229,8 +237,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>586</xloc>
-      <yloc>244</yloc>
+      <xloc>655</xloc>
+      <yloc>245</yloc>
       </entry>
     <entry>
       <name>Ventas a Staging Ventas</name>
@@ -261,8 +269,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>734</xloc>
-      <yloc>248</yloc>
+      <xloc>211</xloc>
+      <yloc>383</yloc>
       </entry>
     <entry>
       <name>Ventas a DW</name>
@@ -293,8 +301,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>867</xloc>
-      <yloc>246</yloc>
+      <xloc>67</xloc>
+      <yloc>387</yloc>
       </entry>
     <entry>
       <name>Proceso Finalizado</name>
@@ -303,8 +311,8 @@ delete from empleado;</sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>746</xloc>
-      <yloc>589</yloc>
+      <xloc>68</xloc>
+      <yloc>252</yloc>
       </entry>
     <entry>
       <name>Productos al DW</name>
@@ -335,8 +343,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>876</xloc>
-      <yloc>366</yloc>
+      <xloc>890</xloc>
+      <yloc>367</yloc>
       </entry>
     <entry>
       <name>Tipo Bebida al DW</name>
@@ -367,8 +375,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>736</xloc>
-      <yloc>359</yloc>
+      <xloc>207</xloc>
+      <yloc>251</yloc>
       </entry>
     <entry>
       <name>Presentacion al DW</name>
@@ -399,8 +407,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>590</xloc>
-      <yloc>358</yloc>
+      <xloc>752</xloc>
+      <yloc>367</yloc>
       </entry>
     <entry>
       <name>Regiones al DW</name>
@@ -431,8 +439,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>467</xloc>
-      <yloc>361</yloc>
+      <xloc>885</xloc>
+      <yloc>249</yloc>
       </entry>
     <entry>
       <name>Antiguedad al DW</name>
@@ -463,8 +471,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>458</xloc>
-      <yloc>463</yloc>
+      <xloc>632</xloc>
+      <yloc>369</yloc>
       </entry>
     <entry>
       <name>Edad empleado al DW</name>
@@ -495,8 +503,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>597</xloc>
-      <yloc>471</yloc>
+      <xloc>357</xloc>
+      <yloc>378</yloc>
       </entry>
     <entry>
       <name>Edad Cliente al DW</name>
@@ -527,8 +535,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>752</xloc>
-      <yloc>474</yloc>
+      <xloc>518</xloc>
+      <yloc>375</yloc>
       </entry>
     <entry>
       <name>Sexo al DW</name>
@@ -559,8 +567,8 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>878</xloc>
-      <yloc>476</yloc>
+      <xloc>552</xloc>
+      <yloc>244</yloc>
       </entry>
     <entry>
       <name>Empleados al DW</name>
@@ -591,8 +599,40 @@ delete from empleado;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>882</xloc>
-      <yloc>587</yloc>
+      <xloc>764</xloc>
+      <yloc>248</yloc>
+      </entry>
+    <entry>
+      <name>Tipo a staging tipo</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;tipoBebida_a_stagingtipo.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>250</yloc>
       </entry>
   </entries>
   <hops>
@@ -601,7 +641,7 @@ delete from empleado;</sql>
       <to>Limpiar Staging</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
@@ -633,24 +673,6 @@ delete from empleado;</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Limpiar DW</from>
-      <to>Clientes al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Clientes al DW</from>
-      <to>Ventas a Staging Ventas</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Ventas a Staging Ventas</from>
       <to>Ventas a DW</to>
       <from_nr>0</from_nr>
@@ -660,70 +682,7 @@ delete from empleado;</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Ventas a DW</from>
-      <to>Productos al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Productos al DW</from>
-      <to>Tipo Bebida al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Tipo Bebida al DW</from>
-      <to>Presentacion al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Presentacion al DW</from>
-      <to>Regiones al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Regiones al DW</from>
-      <to>Antiguedad al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Antiguedad al DW</from>
-      <to>Edad empleado al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Edad empleado al DW</from>
-      <to>Edad Cliente al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Edad Cliente al DW</from>
+      <from>Limpiar DW</from>
       <to>Sexo al DW</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -733,6 +692,15 @@ delete from empleado;</sql>
     </hop>
     <hop>
       <from>Sexo al DW</from>
+      <to>Clientes al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Clientes al DW</from>
       <to>Empleados al DW</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -742,12 +710,102 @@ delete from empleado;</sql>
     </hop>
     <hop>
       <from>Empleados al DW</from>
+      <to>Regiones al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Regiones al DW</from>
+      <to>Productos al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Productos al DW</from>
+      <to>Presentacion al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Presentacion al DW</from>
+      <to>Antiguedad al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Edad Cliente al DW</from>
+      <to>Edad empleado al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Antiguedad al DW</from>
+      <to>Edad Cliente al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Edad empleado al DW</from>
+      <to>Tipo a staging tipo</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Tipo a staging tipo</from>
+      <to>Tipo Bebida al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Tipo Bebida al DW</from>
+      <to>Ventas a Staging Ventas</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Ventas a DW</from>
       <to>Proceso Finalizado</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Ventas a Staging Ventas</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
