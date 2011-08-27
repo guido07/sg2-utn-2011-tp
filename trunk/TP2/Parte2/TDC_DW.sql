@@ -2,18 +2,18 @@
 # ---------------------------------------
 # Host     : localhost
 # Port     : 3306
-# Database : TDC_DW
+# Database : tdc_dw
 
 
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP DATABASE IF EXISTS `TDC_DW`;
+DROP DATABASE IF EXISTS `tdc_dw`;
 
-CREATE DATABASE `TDC_DW`
+CREATE DATABASE `tdc_dw`
     CHARACTER SET 'latin1'
     COLLATE 'latin1_spanish_ci';
 
-USE `TDC_DW`;
+USE `tdc_dw`;
 
 #
 # Structure for the `antiguedad` table : 
@@ -25,7 +25,19 @@ CREATE TABLE `antiguedad` (
   `cod_antiguedad` int(11) NOT NULL AUTO_INCREMENT,
   `anios` int(11) DEFAULT NULL,
   PRIMARY KEY (`cod_antiguedad`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+#
+# Data for the `antiguedad` table  (LIMIT 0,500)
+#
+
+INSERT INTO `antiguedad` (`cod_antiguedad`, `anios`) VALUES 
+  (1,7),
+  (2,8),
+  (3,9),
+  (4,10);
+
+COMMIT;
 
 #
 # Structure for the `clientes` table : 
@@ -752,7 +764,54 @@ CREATE TABLE `edadempleado` (
   `cod_edad_empleado` int(11) NOT NULL AUTO_INCREMENT,
   `edad` int(11) NOT NULL,
   PRIMARY KEY (`cod_edad_empleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+
+#
+# Data for the `edadempleado` table  (LIMIT 0,500)
+#
+
+INSERT INTO `edadempleado` (`cod_edad_empleado`, `edad`) VALUES 
+  (1,28),
+  (2,29),
+  (3,30),
+  (4,31),
+  (5,32),
+  (6,33),
+  (7,34),
+  (8,35),
+  (9,36),
+  (10,37),
+  (11,38),
+  (12,39),
+  (13,40),
+  (14,41),
+  (15,42),
+  (16,43),
+  (17,44),
+  (18,45),
+  (19,46),
+  (20,47),
+  (21,48),
+  (22,49),
+  (23,50),
+  (24,51),
+  (25,52),
+  (26,53),
+  (27,54),
+  (28,55),
+  (29,56),
+  (30,57),
+  (31,58),
+  (32,59),
+  (33,60),
+  (34,61),
+  (35,62),
+  (36,63),
+  (37,64),
+  (38,65),
+  (39,67);
+
+COMMIT;
 
 #
 # Structure for the `edadesclientes` table : 
@@ -765,7 +824,62 @@ CREATE TABLE `edadesclientes` (
   `edad` int(11) NOT NULL,
   `grupo` varchar(20) NOT NULL,
   PRIMARY KEY (`cod_edad_cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+
+#
+# Data for the `edadesclientes` table  (LIMIT 0,500)
+#
+
+INSERT INTO `edadesclientes` (`cod_edad_cliente`, `edad`, `grupo`) VALUES 
+  (1,28,'Adulto'),
+  (2,29,'Adulto'),
+  (3,31,'Adulto'),
+  (4,32,'Adulto'),
+  (5,33,'Adulto'),
+  (6,34,'Adulto'),
+  (7,35,'Adulto'),
+  (8,36,'Adulto'),
+  (9,37,'Adulto'),
+  (10,38,'Adulto'),
+  (11,39,'Adulto'),
+  (12,40,'Adulto Medio'),
+  (13,41,'Adulto Medio'),
+  (14,42,'Adulto Medio'),
+  (15,43,'Adulto Medio'),
+  (16,44,'Adulto Medio'),
+  (17,45,'Adulto Medio'),
+  (18,46,'Adulto Medio'),
+  (19,47,'Adulto Medio'),
+  (20,48,'Adulto Medio'),
+  (21,49,'Adulto Medio'),
+  (22,50,'Adulto mayor'),
+  (23,51,'Adulto mayor'),
+  (24,52,'Adulto mayor'),
+  (25,53,'Adulto mayor'),
+  (26,54,'Adulto mayor'),
+  (27,55,'Adulto mayor'),
+  (28,56,'Adulto mayor'),
+  (29,57,'Adulto mayor'),
+  (30,58,'Adulto mayor'),
+  (31,59,'Adulto mayor'),
+  (32,60,'Adulto mayor'),
+  (33,61,'Adulto mayor'),
+  (34,62,'Adulto mayor'),
+  (35,63,'Adulto mayor'),
+  (36,64,'Adulto mayor'),
+  (37,65,'Adulto mayor'),
+  (38,66,'Adulto mayor'),
+  (39,67,'Adulto mayor'),
+  (40,68,'Adulto mayor'),
+  (41,69,'Adulto mayor'),
+  (42,70,'Adulto mayor'),
+  (43,71,'Adulto mayor'),
+  (44,72,'Adulto mayor'),
+  (45,76,'Adulto mayor'),
+  (46,77,'Adulto mayor'),
+  (47,211,'Adulto mayor');
+
+COMMIT;
 
 #
 # Structure for the `empleado` table : 
@@ -775,10 +889,529 @@ DROP TABLE IF EXISTS `empleado`;
 
 CREATE TABLE `empleado` (
   `cod_empleado` int(11) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
   `sexo` varchar(20) NOT NULL,
   PRIMARY KEY (`cod_empleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# Data for the `empleado` table  (LIMIT 0,500)
+#
+
+INSERT INTO `empleado` (`cod_empleado`, `nombre`, `sexo`) VALUES 
+  (1,'Nowmer, Sheri','F'),
+  (2,'Whelply, Derrick','M'),
+  (3,'Spence, Michael','M'),
+  (4,'Gutierrez, Maya','F'),
+  (5,'Damstra, Roberta','F'),
+  (6,'Kanagaki, Rebecca','F'),
+  (7,'Brunner, Kim','F'),
+  (8,'Blumberg, Brenda','F'),
+  (9,'Stanz, Darren','M'),
+  (10,'Murraiin, Jonathan','M'),
+  (11,'Creek, Jewel','F'),
+  (12,'Medina, Peggy','F'),
+  (13,'Rutledge, Bryan','M'),
+  (14,'Cavestany, Walter','M'),
+  (15,'Planck, Peggy','F'),
+  (16,'Marshall, Brenda','F'),
+  (17,'Wolter, Daniel','M'),
+  (18,'Collins, Dianne','F'),
+  (19,'Baker, Beverly','F'),
+  (20,'Castillo, Pedro','M'),
+  (21,'Borges, Laurie','F'),
+  (22,'Wyro, Shauna','F'),
+  (23,'Wyllie, Jacqueline','F'),
+  (24,'Conley, Lin','F'),
+  (25,'Bernard, Jose','M'),
+  (26,'Macaluso, Charles','M'),
+  (27,'Wood, Lois','F'),
+  (28,'Armstrong, Kevin','M'),
+  (29,'Goldey, Cody','M'),
+  (30,'Nickell, Paula','F'),
+  (31,'Long, Eric','M'),
+  (32,'Solimena, Mary','F'),
+  (33,'Muenich, Nathan','M'),
+  (34,'Young, Ed','M'),
+  (35,'Arnold, Donna','F'),
+  (36,'Cooper, Jennifer','F'),
+  (37,'Petty, Peggy','F'),
+  (38,'Olguin, Jessica','F'),
+  (39,'Burchett, Phyllis','F'),
+  (40,'Bechard, Howard','M'),
+  (41,'Carter, Doris','F'),
+  (42,'Sharp, Juanita','F'),
+  (43,'Brunner, Sandra','F'),
+  (44,'Staton, Ernest','M'),
+  (45,'Sims, Rose','F'),
+  (46,'De Carlo, Lauretta','F'),
+  (47,'Williams, Mary','F'),
+  (48,'Burke, Terri','F'),
+  (49,'Osborn, Audrey','F'),
+  (50,'Binai, Brian','M'),
+  (51,'Lozada, Concepcion','F'),
+  (52,'Tays, Paul','M'),
+  (53,'Thorton, Cheryl','F'),
+  (54,'Dumin, Gary','M'),
+  (55,'Chin, Pat','F'),
+  (56,'Lovell, Zach','M'),
+  (57,'Ratcliff, Dave','M'),
+  (58,'Moss, Elizabeth','F'),
+  (59,'Anderson, Lori','F'),
+  (60,'Everson, Michael','M'),
+  (61,'Borden, Mary','F'),
+  (62,'Willson, Sue','F'),
+  (63,'Harris, Clayton','M'),
+  (64,'Contreras, Whitney','F'),
+  (65,'Pusedu, Boyd','M'),
+  (66,'Stedman, Cian','F'),
+  (67,'Zocchi, Michele','F'),
+  (68,'Walsh, Jean','F'),
+  (69,'Renfro, Leopoldo','M'),
+  (70,'Brockett, Donna','F'),
+  (71,'Anderson, Laurie','F'),
+  (72,'Gomez, Louis','M'),
+  (73,'Walker, Julie','F'),
+  (74,'Jones, Jay','M'),
+  (75,'Winfrey, Gayle','F'),
+  (76,'Brown, Yasmina','F'),
+  (77,'Touchstone, Joseph','M'),
+  (78,'Bakhtyari, Mary','F'),
+  (79,'Glass, Melvin','M'),
+  (80,'Cohen, Kristin','F'),
+  (81,'Kharman, Susan','F'),
+  (82,'Kirschner, Gordon','M'),
+  (83,'Burger, William','M'),
+  (84,'Blau, Lana','F'),
+  (85,'Derby, Donna','F'),
+  (86,'Thomson, Kathleen','F'),
+  (87,'Walton, Gabriel','F'),
+  (88,'Meastas, Bishop','M'),
+  (89,'Kouba, Geneva','F'),
+  (90,'Clark, Tricia','F'),
+  (91,'Munn, Debi','F'),
+  (92,'Goldberg, Patricia','F'),
+  (93,'Magenheim, Susan','F'),
+  (94,'Hance, Nancy','F'),
+  (95,'Mehlert, Rhonda','F'),
+  (96,'Duran, Paula','F'),
+  (97,'Earley, Margaret','F'),
+  (98,'Horne, Elizabeth','F'),
+  (99,'Hunt, Mary','F'),
+  (100,'Allen, Libby','F'),
+  (101,'Bruno, Bonnie','F'),
+  (102,'Bowers, Angela','F'),
+  (103,'Gonzales, Donald','M'),
+  (104,'Valdez, Sylvester','M'),
+  (105,'Stewart, John','M'),
+  (106,'Velasquez, Barney','M'),
+  (107,'Dubois, Kenneth','M'),
+  (108,'Maestas, Kate','F'),
+  (109,'Underwood, Josie','F'),
+  (110,'Strain, Ramon','M'),
+  (111,'Azari, Pat','F'),
+  (112,'Dabit, Bob','M'),
+  (113,'Carmona, Marty','M'),
+  (114,'Saxton, Gina','F'),
+  (115,'McLaughlin, Juan','M'),
+  (116,'Eyster, Carol','F'),
+  (117,'Henry, Nancy','F'),
+  (118,'Barros, Chris','F'),
+  (119,'Groome, Christopher','M'),
+  (120,'Hill, Anna','F'),
+  (121,'Williams, Ramon','M'),
+  (122,'Masters, Scott','M'),
+  (123,'Brady, Jr., Joseph','M'),
+  (124,'Gray, Ellen','F'),
+  (125,'Fielder, Henry','M'),
+  (126,'Finnell, Jeanine','F'),
+  (127,'Schuetz, Ian','M'),
+  (128,'Runyon, Richard','M'),
+  (129,'Potter, Linda','F'),
+  (130,'Smith, Mary','F'),
+  (131,'Brumagen, Barbara','F'),
+  (132,'Hamilton, Thelma','F'),
+  (133,'Wilbert, Shirley','F'),
+  (134,'Ingram, Jeremy','M'),
+  (135,'Haddix, Sharon','F'),
+  (136,'Thomas, Leland','M'),
+  (137,'Wilson, Don','M'),
+  (138,'Stovall, Wayne','M'),
+  (139,'Russell, Douglas','M'),
+  (140,'Doose, Maureen','F'),
+  (141,'Morreale, Ann','F'),
+  (142,'Rupert, Sheila','F'),
+  (143,'Pierson, Ashley','F'),
+  (144,'Nickels, Ivan','M'),
+  (145,'Neuhauser, Chad','M'),
+  (146,'Coke, Ann','F'),
+  (147,'Scarbrough, Jon','M'),
+  (148,'Martensen, Lillian','F'),
+  (149,'McCormick, Mary','F'),
+  (150,'Sparacino, James','M'),
+  (151,'Racette, John','M'),
+  (152,'Thompson, Edwardo','M'),
+  (153,'Warren, Sam','M'),
+  (154,'Chow-Wang, Shelby','M'),
+  (155,'Wood, Nelly','F'),
+  (156,'Morgan, Jackie','F'),
+  (157,'Boje, Gavin','M'),
+  (158,'Tsujimoto, Marlene','F'),
+  (159,'Bouton, RitaIva','F'),
+  (160,'Gras, Dell','F'),
+  (161,'Solano, Christopher','M'),
+  (162,'Armstrong, George','M'),
+  (163,'Aldred, Kristine','F'),
+  (164,'Jorgenson, Tom','M'),
+  (165,'Turner, Dana','F'),
+  (166,'Zakerski, Terry','M'),
+  (167,'Carlson, David','F'),
+  (168,'Symons, Linda','F'),
+  (169,'Reynolds, Louis','M'),
+  (170,'Ibsen, Maureen','M'),
+  (171,'Ciochon, Virginia','F'),
+  (172,'Berger, Steve','F'),
+  (173,'Bayol, James','F'),
+  (174,'Thumann, Meredith','F'),
+  (175,'Jones, Julie','M'),
+  (176,'Bury, Janet','M'),
+  (177,'Bevan, Onita','M'),
+  (178,'Monarco, Mary','M'),
+  (179,'Zingarelli, Vicky','F'),
+  (180,'Valentine, Helen','F'),
+  (181,'Scheulen, Carol','F'),
+  (182,'Koon, Virgie','M'),
+  (183,'Amole, Sarah','F'),
+  (184,'Hill, Cecil','M'),
+  (185,'Tate, Ruth','F'),
+  (186,'Schnurr, Larry','M'),
+  (187,'Sutton, Jerry','F'),
+  (188,'Mlincek, Kevin','M'),
+  (189,'Tucker, Edward','F'),
+  (190,'Forham, Kenton','F'),
+  (191,'Malik, Brittany','F'),
+  (192,'Eldridge, Jeannette','M'),
+  (193,'Anderson, Terry','F'),
+  (194,'Sosa, Loni','F'),
+  (195,'Mann, Marie','M'),
+  (196,'Prater, Michael','F'),
+  (197,'Ansaldo, Karen','F'),
+  (198,'Caijem, Lance','M'),
+  (199,'Yates, Pamela','F'),
+  (200,'Turner, Iwona','F'),
+  (201,'Fulcher, Mary','F'),
+  (202,'Berg, Raymond','M'),
+  (203,'Lopez, Ramona','M'),
+  (204,'Valdivia, Helen','M'),
+  (205,'Cardoza, Beverly','F'),
+  (206,'Hall, Mary','M'),
+  (207,'Minarick, Rachel','F'),
+  (208,'Los Olmos, Dorine','M'),
+  (209,'Garner, Dave','F'),
+  (210,'Leong, Lois','M'),
+  (211,'Tate, Larasa','M'),
+  (212,'Watson, David','F'),
+  (213,'Frank, James','M'),
+  (214,'Wood, Alfredo','M'),
+  (215,'Baird, Dorothy','F'),
+  (216,'Jans, George','M'),
+  (217,'Garrison, Bernadine','M'),
+  (218,'Zeller, Sam','M'),
+  (219,'Ace, Dorothy','F'),
+  (220,'Trujillo, Adria','F'),
+  (221,'McCown, Bunny','F'),
+  (222,'Miller, Nancy','F'),
+  (223,'Hollar, Wanda','F'),
+  (224,'Wallin, Barbara','M'),
+  (225,'Bruha, Michael','F'),
+  (226,'Suggs, Michael','F'),
+  (227,'Turner, Kenneth','F'),
+  (228,'Griffin, Lois','F'),
+  (229,'Guardamondo, Robert','M'),
+  (230,'West, Bryan','F'),
+  (231,'Welsh, Vicki','F'),
+  (232,'McCollum, Harvey','M'),
+  (233,'Cramer, Mary','M'),
+  (234,'Fike, Linda','M'),
+  (235,'Adair, Sam','M'),
+  (236,'Kolosso, Jerry','M'),
+  (237,'Carpenter, Todd','F'),
+  (238,'Watkins, Lisa','M'),
+  (239,'Barrera, Kevin','M'),
+  (240,'Price, Maria','M'),
+  (241,'Rosemont, Flossie','M'),
+  (242,'McMenama, Betty','M'),
+  (243,'Lyons, Max','F'),
+  (244,'Sandy Kurtz, Christine','M'),
+  (245,'Santry, Rita','M'),
+  (246,'Quigle, Catherine','F'),
+  (247,'Christensen, Patricia','M'),
+  (248,'Mercurio, Anne','F'),
+  (249,'McGrath, Louis','M'),
+  (250,'Wright, Rachael','F'),
+  (251,'Skuce, Richard','M'),
+  (252,'Coleman, George','F'),
+  (253,'Barnes, Lois','M'),
+  (254,'Camille, Jacky','M'),
+  (255,'Allenbach, Michelle','M'),
+  (256,'Smith, Franklin','F'),
+  (257,'Minker, John','M'),
+  (258,'Jimenez, Sarah','M'),
+  (259,'Malaby, Darwin','M'),
+  (260,'Caldwell, Pamela','M'),
+  (261,'Tinder, Roger','F'),
+  (262,'Kropff, Joseph','F'),
+  (263,'Worsham, Mimi','F'),
+  (264,'Bernal, Ruth','F'),
+  (265,'Zimmerman, Yolanda','M'),
+  (266,'Evans, Sandra','F'),
+  (267,'Bowman, Virginia','M'),
+  (268,'Coleman, Mary','F'),
+  (269,'Chrisulis, Kevin','M'),
+  (270,'Whitcomb, Lee','M'),
+  (271,'Turcios, Brian','F'),
+  (272,'Confetti, Jennifer','F'),
+  (273,'Takemura, Geneva','M'),
+  (274,'Campbell, Lynn','F'),
+  (275,'Smith, Nina','M'),
+  (276,'Vuong, Darrell','M'),
+  (277,'Abbott, Eric','F'),
+  (278,'Liff, Doris','F'),
+  (279,'Steinberg, John','F'),
+  (280,'Megel, Jerry','F'),
+  (281,'Styles, John','F'),
+  (282,'Head, Shirley','M'),
+  (283,'Story, James','F'),
+  (284,'Boone, Jean','F'),
+  (285,'Mccoy, Ralph','F'),
+  (286,'Tuck, Anne','F'),
+  (287,'Sincich, Joy','F'),
+  (288,'Jameson, Bertha','F'),
+  (289,'Sanchez, Charles','M'),
+  (290,'Parks, Wanda','M'),
+  (291,'Vij, Nathan','M'),
+  (292,'Zugschwert, Corinne','M'),
+  (293,'Adams, Michelle','F'),
+  (294,'Steen, Donahue','M'),
+  (295,'Baker, John','F'),
+  (296,'Pearl, Keith','F'),
+  (297,'Roundtree, Sarah','F'),
+  (298,'Bollin, Lawrence','F'),
+  (299,'Hopkins, Fred','M'),
+  (300,'Vicknair, Caroline','F'),
+  (301,'McPhearson, Nancy','F'),
+  (302,'Albright, Anna','M'),
+  (303,'Thomas, Phyllis','M'),
+  (304,'Perko, Tina','F'),
+  (305,'McCarty, Jane','M'),
+  (306,'Bent, Scot','F'),
+  (307,'Chambers, Pat','F'),
+  (308,'Bellifa, Stanley','M'),
+  (309,'Johnson, Samuel','F'),
+  (310,'Vrins, Janice','M'),
+  (311,'Mcdonald, Christinia','M'),
+  (312,'Weldon, Ole','M'),
+  (313,'Choin, Ruth','F'),
+  (314,'Crow, Sharon','M'),
+  (315,'Avalos, Robert','M'),
+  (316,'Jacobsen, Eric','M'),
+  (317,'Castro, Pamela','F'),
+  (318,'Caldwell, Sylvia','F'),
+  (319,'Reed, Russell','F'),
+  (320,'Kelley, Victor','M'),
+  (321,'Taylor, Damon','M'),
+  (322,'Robinson, Rebecca','F'),
+  (323,'Thomsen, Andrea','M'),
+  (324,'Baldwin, Douglas','F'),
+  (325,'Yuhasz, Ian','F'),
+  (326,'Carmody, Jovita','F'),
+  (327,'Gonzales, Lynn','M'),
+  (328,'Allen, Phyllis','F'),
+  (329,'Caprio, Johnny','F'),
+  (330,'Slaven, Lanna','M'),
+  (331,'Ortiz, Fred','M'),
+  (332,'Beaver, John','F'),
+  (333,'Rhodes, Albert','F'),
+  (334,'Kaffer, Scott','F'),
+  (335,'Bales, Jennifer','M'),
+  (336,'Stotka, Louis','F'),
+  (337,'Maynard, Sandra','M'),
+  (338,'Tuell, Gracia','F'),
+  (339,'Burnett, Timothy','F'),
+  (340,'Haugh, James','M'),
+  (341,'Moberly, Paula','F'),
+  (342,'Meyer, Eric','F'),
+  (343,'Orona, Gloria','M'),
+  (344,'Warmack, Ruth','F'),
+  (345,'Wall, Joanna','M'),
+  (346,'Appelbaum, Sabria','F'),
+  (347,'Kung, Jeffrey','M'),
+  (348,'Wilson, Gloria','F'),
+  (349,'Tuffield, Phyllis','F'),
+  (350,'Ping, Patricia','M'),
+  (351,'Shepard, David','F'),
+  (352,'Bailey, James','F'),
+  (353,'Chestnut, Susan','F'),
+  (354,'Toone, Delia','F'),
+  (355,'Armstrong, Thomas','F'),
+  (356,'Billstrom, Mary','M'),
+  (357,'Stotka, Robert','F'),
+  (358,'Johnson, Danielle','F'),
+  (359,'Lepro, Bonnie','M'),
+  (360,'Elliott, Carol','F'),
+  (361,'Steelman, Shanay','F'),
+  (362,'Adams, Frances','F'),
+  (363,'Poorbaugh, Alma','F'),
+  (364,'Hasty, Neal','F'),
+  (365,'Betsekas, Steven','M'),
+  (366,'Ziegler, Arvid','F'),
+  (367,'Weyerhaeuser, Ann','F'),
+  (368,'Robinson, Dorothy','F'),
+  (369,'Brunner, June','M'),
+  (370,'Frazier, Judith','M'),
+  (371,'Rector, Michelle','M'),
+  (372,'Caldwell, Mari','F'),
+  (373,'Gonzales, Linda','F'),
+  (374,'Monitor, Alan','F'),
+  (375,'Lewin, Elsie','M'),
+  (376,'Desalvo, Bev','F'),
+  (377,'Alpuerto, Oscar','M'),
+  (378,'Marshall, Cecelia','M'),
+  (379,'Bockenkamp, Gabriel','M'),
+  (380,'Kesterson, Alice','F'),
+  (381,'Alexander, J. Phillip','M'),
+  (382,'Mendoza, R. Morgan','M'),
+  (383,'Herrick, Pam','M'),
+  (384,'McCoy, James','F'),
+  (385,'Thoreson, Rossane','F'),
+  (386,'Snowden, Victoria','M'),
+  (387,'Blanton, Donald','F'),
+  (388,'Gibbens, Cornett','M'),
+  (389,'Alcorn, Paul','M'),
+  (390,'Miller, Virginia','M'),
+  (391,'Campen, Henry','F'),
+  (392,'Coffman, Connie','M'),
+  (393,'Bustamante, Jared','M'),
+  (394,'Eldridge, Carla','F'),
+  (395,'Sipsy, Barbara','F'),
+  (396,'Weimer, Dorothy','M'),
+  (397,'Irwin, Richard','M'),
+  (398,'Son, Alma','M'),
+  (399,'Brandon, Cornelius','F'),
+  (400,'Quintana, Monica','M'),
+  (401,'Colon, John','F'),
+  (402,'Barlow, Brenda','M'),
+  (403,'Adina, Ronald','M'),
+  (404,'Bohling, Michael','F'),
+  (405,'Wheeler, Sam','M'),
+  (406,'Swearengin, Abraham','M'),
+  (407,'Givens, David','F'),
+  (408,'Beanston, Glenna','M'),
+  (409,'Bruno, Dirk','M'),
+  (410,'Berger, Alexander','M'),
+  (411,'Sultan, Marcia','M'),
+  (412,'Svoboda, Martin','F'),
+  (413,'Tullao, Mary','F'),
+  (414,'Hernandez, Irene','M'),
+  (415,'Wilkie, Jay Saxema','F'),
+  (416,'Lunt, Sean','F'),
+  (417,'Fulton, Paul','F'),
+  (418,'Dillon, Rudolph','F'),
+  (419,'Miller, Matthew','F'),
+  (420,'Stern, Vassar','F'),
+  (421,'Suffin, Ruth','M'),
+  (422,'Cleary, Kristine','F'),
+  (423,'Homax, Jaunita','F'),
+  (424,'Adams, Margaret','M'),
+  (425,'Zubaty, Carla','M'),
+  (426,'Khan, Tammy','M'),
+  (427,'Brinkd, David','M'),
+  (428,'Clark, James','M'),
+  (429,'Dennis, Helen','M'),
+  (430,'Brumfield, Eric','F'),
+  (431,'Sanchez, Madalena','F'),
+  (432,'Suess, Gary','F'),
+  (433,'Trach, Glenn','F'),
+  (434,'White, Cynthia','F'),
+  (435,'Brian, Walter','M'),
+  (436,'Trujillo, Christie','F'),
+  (437,'Alameda, Lili','F'),
+  (438,'Fox, Dorothy','M'),
+  (439,'Gallagher, Aldeen','F'),
+  (440,'Myer, Dorothy','F'),
+  (441,'Byrnes, David','F'),
+  (442,'Ryan, Justine','M'),
+  (443,'Chand, Forrest','F'),
+  (444,'Vanderkamp, Margaret','M'),
+  (445,'Carroll, Rosmarie','F'),
+  (446,'Contreras, Dorothy','M'),
+  (447,'Cantoni, Joseph','M'),
+  (448,'Reed, Celine','F'),
+  (449,'Peterson, Glin','M'),
+  (450,'Osborn, Stephen','F'),
+  (451,'Graham., Lowell','F'),
+  (452,'Shaddy, Jamie','F'),
+  (453,'Haemon, Hattie','M'),
+  (454,'Krow, Jame','F'),
+  (455,'Belli, Shane','M'),
+  (456,'Porter, Ethel','F'),
+  (457,'Lesko, Gloria','F'),
+  (458,'Worland, Michael','M'),
+  (459,'Torre, Alvin','M'),
+  (460,'Ramos, Susan','M'),
+  (461,'Christie, Jill','F'),
+  (462,'Zocchi, Juanita','M'),
+  (463,'Altamirano, Sandra','M'),
+  (464,'Benson, Edna','M'),
+  (465,'Deborde, Alexander','M'),
+  (466,'Calone, Barbara','F'),
+  (467,'Pompa, Cheryl','F'),
+  (468,'Traube, Doris','M'),
+  (469,'Sloan, Cathy','F'),
+  (470,'Villa, Homer','F'),
+  (471,'Herman, Deena','F'),
+  (472,'Roberts, Leota','F'),
+  (473,'Mc Clane, John','F'),
+  (474,'Maxham, Jennifer','M'),
+  (475,'Sullivan, Elizabeth','F'),
+  (476,'Watada, Irene','F'),
+  (477,'Rhiger, Constance','F'),
+  (478,'Finley, Rhoda','F'),
+  (479,'Winter, Kathleen','F'),
+  (480,'Adams, Carla','M'),
+  (481,'Tench, Vanessa','M'),
+  (482,'Brink, Carol','M'),
+  (483,'Reynolds, Adam','F'),
+  (484,'Posner, Constance','F'),
+  (485,'Hapke, William','M'),
+  (486,'Huff, Joshua','F'),
+  (487,'Brown, Carolee','M'),
+  (488,'Giglio, Frances','M'),
+  (489,'Sherwood, Irma','F'),
+  (490,'Becker, Benjamin','F'),
+  (491,'Tedford, Chad','M'),
+  (492,'Roy, Luke','M'),
+  (493,'Holloway, Jean','F'),
+  (494,'Trau, Olga','M'),
+  (495,'Carnes, Steve','M'),
+  (496,'Potts, Betty','M'),
+  (497,'Kozlowski, Edward','M'),
+  (498,'Looney, Sharon','M'),
+  (499,'Magenheimer, Patrick','F'),
+  (500,'Hofsetz, Sue','F');
+
+COMMIT;
+
+#
+# Data for the `empleado` table  (LIMIT 500,500)
+#
+
+INSERT INTO `empleado` (`cod_empleado`, `nombre`, `sexo`) VALUES 
+  (501,'Gilliat, Janet','F'),
+  (502,'Wojcik, Charlene','F'),
+  (503,'Wolf, Eunice','F');
+
+COMMIT;
 
 #
 # Structure for the `presentacion` table : 
@@ -790,7 +1423,20 @@ CREATE TABLE `presentacion` (
   `cod_presentacion` int(11) NOT NULL AUTO_INCREMENT,
   `presentacion` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_presentacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+#
+# Data for the `presentacion` table  (LIMIT 0,500)
+#
+
+INSERT INTO `presentacion` (`cod_presentacion`, `presentacion`) VALUES 
+  (1,'1 Liter'),
+  (2,'2 Liter'),
+  (3,'500 cm3 can'),
+  (4,'670 cm3'),
+  (5,'330 cm3 can');
+
+COMMIT;
 
 #
 # Structure for the `productos` table : 
@@ -805,16 +1451,50 @@ CREATE TABLE `productos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
+# Data for the `productos` table  (LIMIT 0,500)
+#
+
+INSERT INTO `productos` (`cod_producto`, `detalle`) VALUES 
+  (1,'Kool Cola                      '),
+  (4,'Diet Cola                      '),
+  (7,'Caffeine Free Cola             '),
+  (10,'Old Fashioned Root Beer        '),
+  (13,'Diet Root Beer                 '),
+  (16,'Energy drink                   '),
+  (19,'Birch Beer                     '),
+  (22,'Dark Cream Soda                '),
+  (25,'Vanilla Cream Soda             '),
+  (29,'Diet Cream Soda                '),
+  (32,'Grapefruit juice               '),
+  (35,'Orange juice                   '),
+  (38,'Diet energy drink              '),
+  (41,'Trappiste Beer                 '),
+  (42,'Orval Beer                     ');
+
+COMMIT;
+
+#
 # Structure for the `regiones` table : 
 #
 
 DROP TABLE IF EXISTS `regiones`;
 
 CREATE TABLE `regiones` (
-  `cod_zona` int(11) NOT NULL AUTO_INCREMENT,
-  `zona` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
-  PRIMARY KEY (`cod_zona`)
+  `zona` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
+  KEY `zona` (`zona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+#
+# Data for the `regiones` table  (LIMIT 0,500)
+#
+
+INSERT INTO `regiones` (`zona`) VALUES 
+  ('Central   '),
+  ('East   '),
+  ('South   '),
+  ('West   ');
+
+COMMIT;
 
 #
 # Structure for the `sexo` table : 
@@ -823,10 +1503,19 @@ CREATE TABLE `regiones` (
 DROP TABLE IF EXISTS `sexo`;
 
 CREATE TABLE `sexo` (
-  `cod_sexo` int(11) NOT NULL AUTO_INCREMENT,
-  `sexo` varchar(20) COLLATE latin1_spanish_ci DEFAULT NULL,
-  PRIMARY KEY (`cod_sexo`)
+  `sexo` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`sexo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+#
+# Data for the `sexo` table  (LIMIT 0,500)
+#
+
+INSERT INTO `sexo` (`sexo`) VALUES 
+  ('F'),
+  ('M');
+
+COMMIT;
 
 #
 # Structure for the `tiempo` table : 
@@ -852,7 +1541,20 @@ CREATE TABLE `tipobebida` (
   `cod_tipobebida` int(11) NOT NULL AUTO_INCREMENT,
   `desc_tipo` varchar(100) NOT NULL,
   PRIMARY KEY (`cod_tipobebida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+#
+# Data for the `tipobebida` table  (LIMIT 0,500)
+#
+
+INSERT INTO `tipobebida` (`cod_tipobebida`, `desc_tipo`) VALUES 
+  (1,'Cola'),
+  (2,'Beer'),
+  (3,'Energy Drink'),
+  (4,'Soda'),
+  (5,'Juice');
+
+COMMIT;
 
 #
 # Structure for the `ventas` table : 
@@ -862,18 +1564,18 @@ DROP TABLE IF EXISTS `ventas`;
 
 CREATE TABLE `ventas` (
   `cod_cliente` int(11) NOT NULL,
-  `cod_sexo` int(11) NOT NULL,
+  `cod_sexo` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
   `cod_producto` int(11) NOT NULL,
   `cod_empleado` int(11) NOT NULL,
   `cod_edad_empleado` int(11) NOT NULL,
   `cod_edad_cliente` int(11) NOT NULL,
-  `cod_zona` int(11) NOT NULL,
+  `cod_zona` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `cod_tiempo` date NOT NULL,
   `cod_antiguedad` int(11) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
   `litros` float(9,3) DEFAULT NULL,
   `monto` float(9,3) DEFAULT NULL,
-  PRIMARY KEY (`cod_cliente`,`cod_sexo`,`cod_producto`,`cod_empleado`,`cod_edad_empleado`,`cod_edad_cliente`,`cod_zona`,`cod_tiempo`,`cod_antiguedad`),
+  PRIMARY KEY (`cod_producto`,`cod_empleado`,`cod_edad_empleado`,`cod_edad_cliente`,`cod_zona`,`cod_tiempo`,`cod_antiguedad`,`cod_cliente`,`cod_sexo`),
   KEY `FK_tiempo_ventas` (`cod_tiempo`),
   KEY `FK_sexo_ventas` (`cod_sexo`),
   KEY `FK_productos_ventas` (`cod_producto`),
@@ -887,8 +1589,8 @@ CREATE TABLE `ventas` (
   CONSTRAINT `FK_edademp_ventas` FOREIGN KEY (`cod_edad_empleado`) REFERENCES `edadempleado` (`cod_edad_empleado`),
   CONSTRAINT `FK_empleados_ventas` FOREIGN KEY (`cod_empleado`) REFERENCES `empleado` (`cod_empleado`),
   CONSTRAINT `FK_productos_ventas` FOREIGN KEY (`cod_producto`) REFERENCES `productos` (`cod_producto`),
-  CONSTRAINT `FK_region_ventas` FOREIGN KEY (`cod_zona`) REFERENCES `regiones` (`cod_zona`),
-  CONSTRAINT `FK_sexo_ventas` FOREIGN KEY (`cod_sexo`) REFERENCES `sexo` (`cod_sexo`),
+  CONSTRAINT `FK_regiones_ventas` FOREIGN KEY (`cod_zona`) REFERENCES `regiones` (`zona`),
+  CONSTRAINT `FK_sexo_ventas` FOREIGN KEY (`cod_sexo`) REFERENCES `sexo` (`sexo`),
   CONSTRAINT `FK_tiempo_ventas` FOREIGN KEY (`cod_tiempo`) REFERENCES `tiempo` (`cod_tiempo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
