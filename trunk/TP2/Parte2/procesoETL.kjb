@@ -118,7 +118,8 @@ delete from descuentos;
 delete from precios;
 delete from feriados;
 delete from empleados;
-delete from stagingtipo;</sql>
+delete from stagingtipo;
+delete from totalVenta;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -301,8 +302,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>67</xloc>
-      <yloc>387</yloc>
+      <xloc>69</xloc>
+      <yloc>388</yloc>
       </entry>
     <entry>
       <name>Proceso Finalizado</name>
@@ -641,7 +642,7 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <to>Limpiar Staging</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
@@ -797,15 +798,6 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>Ventas a Staging Ventas</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
