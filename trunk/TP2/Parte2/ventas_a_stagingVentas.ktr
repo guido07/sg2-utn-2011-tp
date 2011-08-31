@@ -60,6 +60,8 @@
     </slaveservers>
     <clusterschemas>
     </clusterschemas>
+  <created_user/>
+  <created_date>2011&#47;08&#47;27 14:24:22.305</created_date>
   <modified_user>-</modified_user>
   <modified_date>2011&#47;08&#47;18 15:03:28.260</modified_date>
   </info>
@@ -116,7 +118,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Ventas Staging</from><to>Convertir Presentacion</to><enabled>Y</enabled> </hop>  <hop> <from>Convertir Presentacion</from><to>Staging Ventas en Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Ventas Staging1</from><to>Total venta a staging</to><enabled>Y</enabled> </hop>  <hop> <from>Staging Ventas en Staging 2</from><to>Ventas DW staging</to><enabled>Y</enabled> </hop>  <hop> <from>Total ventas en staging</from><to>Total ventas a dw staging</to><enabled>Y</enabled> </hop>  <hop> <from>Staging</from><to>VentaDW</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Ventas Staging</from><to>Convertir Presentacion</to><enabled>Y</enabled> </hop>  <hop> <from>Precios Staging</from><to>Total venta a staging</to><enabled>Y</enabled> </hop>  <hop> <from>Convertir Presentacion</from><to>Ventas a saVentas</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Convertir Presentacion</name>
     <type>ScriptValueMod</type>
@@ -150,131 +152,6 @@ default: litrosNumerico=0;}</jsScript_script>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>418</xloc>
       <yloc>37</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Staging Ventas en Staging</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <schema/>
-    <table>stagingventas</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>cod_cliente</column_name>
-          <stream_name>cod_cliente</stream_name>
-        </field>
-        <field>
-          <column_name>fecha</column_name>
-          <stream_name>fecha</stream_name>
-        </field>
-        <field>
-          <column_name>litrosEnvase</column_name>
-          <stream_name>litrosNumerico</stream_name>
-        </field>
-        <field>
-          <column_name>cantidad</column_name>
-          <stream_name>cantidad</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>632</xloc>
-      <yloc>41</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ventas Staging</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <sql>select cod_cliente, date(fecha) as fecha,
-productos.presentacion,
-sum(detalle_ventas.cantidad) as cantidad
-from
-ventas inner join detalle_ventas on
-ventas.cod_venta = detalle_ventas.cod_venta
-inner join productos on
-detalle_ventas.cod_producto = productos.cod_producto
-group by 1,2,3</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>199</xloc>
-      <yloc>35</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ventas Staging1</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <sql>select ve.cod_venta, deve.cod_producto, sum(pr.precio) Total_producto 
-from productos p 
-inner JOIN 
-
-	(select max(pr.`fechadesde`)fecha, pr.cod_producto 
-	from precios pr inner join detalle_ventas dv on pr.cod_producto = dv.cod_producto
-	inner join ventas v on dv.cod_venta = v.cod_venta
-	where pr.`fechadesde`&lt;=v.fecha 
-	group by pr.cod_producto) as pmax 
-
-on p.cod_producto = pmax.cod_producto 
-inner join precios pr on pmax.cod_producto = pr.cod_producto and pmax.fecha = pr.fechadesde
-inner join detalle_ventas deve on deve.cod_producto = pmax.cod_producto
-inner join ventas ve on ve.cod_venta = deve.cod_venta
-group by 1,2  </sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>200</xloc>
-      <yloc>143</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -322,14 +199,14 @@ group by 1,2  </sql>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>620</xloc>
-      <yloc>148</yloc>
+      <xloc>632</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Staging Ventas en Staging 2</name>
+    <name>Ventas Staging</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -339,10 +216,13 @@ group by 1,2  </sql>
            <schema_name/>
            </partitioning>
     <connection>Conexion_TDCStaging</connection>
-    <sql>select cod_cliente, fecha, sum(litrosEnvase * cantidad) as litros,
-sum(cantidad) as cantidad
-from stagingVentas
-group by 1,2</sql>
+    <sql>select ventas.cod_venta, productos.cod_producto, productos.presentacion, sum(detalle_ventas.cantidad) as cantidad
+
+from ventas inner join detalle_ventas on ventas.cod_venta = detalle_ventas.cod_venta
+
+inner join productos on detalle_ventas.cod_producto = productos.cod_producto
+
+group by 1,2,3</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -350,14 +230,53 @@ group by 1,2</sql>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>223</xloc>
-      <yloc>242</yloc>
+      <xloc>199</xloc>
+      <yloc>35</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Total ventas a dw staging</name>
+    <name>Precios Staging</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_TDCStaging</connection>
+    <sql>select ve.cod_venta, deve.cod_producto, sum(pr.precio*deve.cantidad) Total_producto 
+from productos p 
+inner JOIN 
+
+	(select max(pr.`fechadesde`)fecha, pr.cod_producto 
+	from precios pr inner join detalle_ventas dv on pr.cod_producto = dv.cod_producto
+	inner join ventas v on dv.cod_venta = v.cod_venta
+	where pr.`fechadesde`&lt;=v.fecha 
+	group by pr.cod_producto) as pmax 
+
+on p.cod_producto = pmax.cod_producto 
+inner join precios pr on pmax.cod_producto = pr.cod_producto and pmax.fecha = pr.fechadesde
+inner join detalle_ventas deve on deve.cod_producto = pmax.cod_producto
+inner join ventas ve on ve.cod_venta = deve.cod_venta
+group by 1,2  </sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>212</xloc>
+      <yloc>145</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ventas a saVentas</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -368,7 +287,7 @@ group by 1,2</sql>
            </partitioning>
     <connection>Conexion_TDCStaging</connection>
     <schema/>
-    <table>ventaaldw</table>
+    <table>saventas</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -384,198 +303,27 @@ group by 1,2</sql>
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
-        <field>
-          <column_name>monto</column_name>
-          <stream_name>total</stream_name>
-        </field>
-        <field>
-          <column_name>cod_empleado</column_name>
-          <stream_name>cod_empleado</stream_name>
-        </field>
         <field>
           <column_name>cod_producto</column_name>
           <stream_name>cod_producto</stream_name>
         </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>559</xloc>
-      <yloc>345</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Total ventas en staging</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <sql>SELECT tv.total, v.cod_empleado, tv.cod_producto
-FROM totalventa tv
-inner join ventas v on v.cod_venta = tv.cod_venta
-
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>224</xloc>
-      <yloc>347</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ventas DW staging</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <schema/>
-    <table>ventaaldw</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>cod_cliente</column_name>
-          <stream_name>cod_cliente</stream_name>
-        </field>
-        <field>
-          <column_name>cod_tiempo</column_name>
-          <stream_name>fecha</stream_name>
-        </field>
         <field>
           <column_name>litros</column_name>
-          <stream_name>litros</stream_name>
+          <stream_name>litrosNumerico</stream_name>
         </field>
         <field>
           <column_name>cantidad</column_name>
           <stream_name>cantidad</stream_name>
         </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>554</xloc>
-      <yloc>241</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Staging</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <sql>select e.sexo, year(current_timestamp()) - year(e.fechaingreso) as Antiguedad, year(current_timestamp()) - year(e.fechanacimiento) as Edad_Emp,
-year(current_timestamp()) - year(cli.fecha_nacimiento) as Edad_Cli, v.region
-from ventas v
-inner join empleados e on e.cod_empleado = v.cod_empleado
-inner join 
-(select cod_cliente, fecha_nacimiento from mayoristas 
-union
-select cod_cliente, fecha_nacimiento from minoristas) cli
-
-on cli.cod_cliente = v.cod_cliente
-
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>227</xloc>
-      <yloc>456</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>VentaDW</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conexion_TDCStaging</connection>
-    <schema/>
-    <table>ventaaldw</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
         <field>
-          <column_name>cod_sexo</column_name>
-          <stream_name>sexo</stream_name>
-        </field>
-        <field>
-          <column_name>cod_antiguedad</column_name>
-          <stream_name>Antiguedad</stream_name>
-        </field>
-        <field>
-          <column_name>cod_edad_empleado</column_name>
-          <stream_name>Edad_Emp</stream_name>
-        </field>
-        <field>
-          <column_name>cod_edad_cliente</column_name>
-          <stream_name>Edad_Cli</stream_name>
-        </field>
-        <field>
-          <column_name>cod_zona</column_name>
-          <stream_name>region</stream_name>
+          <column_name>cod_venta</column_name>
+          <stream_name>cod_venta</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>570</xloc>
-      <yloc>456</yloc>
+      <xloc>625</xloc>
+      <yloc>38</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

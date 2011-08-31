@@ -171,8 +171,11 @@
            <schema_name/>
            </partitioning>
     <connection>Conexion_TDCStaging</connection>
-    <sql>SELECT distinct region
-FROM regiones
+    <sql>SELECT distinct region FROM regiones 
+union
+select distinct region from ventas
+
+
 </sql>
     <limit>0</limit>
     <lookup/>

@@ -119,7 +119,11 @@ delete from precios;
 delete from feriados;
 delete from empleados;
 delete from stagingtipo;
-delete from totalVenta;</sql>
+delete from totalVenta;
+delete from saVentas;
+delete from saDescuentos;
+delete from totales;
+</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -128,8 +132,8 @@ delete from totalVenta;</sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>294</xloc>
-      <yloc>100</yloc>
+      <xloc>299</xloc>
+      <yloc>95</yloc>
       </entry>
     <entry>
       <name>Fuentes a Staging</name>
@@ -160,8 +164,8 @@ delete from totalVenta;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>452</xloc>
-      <yloc>106</yloc>
+      <xloc>457</xloc>
+      <yloc>95</yloc>
       </entry>
     <entry>
       <name>Error en Fuentes a Staging</name>
@@ -173,8 +177,8 @@ Se ha detenido el proceso.</bodymessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>629</xloc>
-      <yloc>107</yloc>
+      <xloc>634</xloc>
+      <yloc>95</yloc>
       </entry>
     <entry>
       <name>Limpiar DW</name>
@@ -189,13 +193,11 @@ delete from productos;
 delete from antiguedad;
 delete from edadempleado;
 delete from edadesclientes;
-delete from sexo;
 delete from empleado;
 ALTER TABLE edadempleado AUTO_INCREMENT =1;
 ALTER TABLE antiguedad AUTO_INCREMENT =1;
 ALTER TABLE edadesclientes AUTO_INCREMENT =1;
 ALTER TABLE tipobebida AUTO_INCREMENT =1;
-ALTER TABLE sexo AUTO_INCREMENT =1;
 ALTER TABLE presentacion AUTO_INCREMENT =1;
 ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
@@ -238,8 +240,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>655</xloc>
-      <yloc>245</yloc>
+      <xloc>570</xloc>
+      <yloc>246</yloc>
       </entry>
     <entry>
       <name>Ventas a Staging Ventas</name>
@@ -270,8 +272,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>211</xloc>
-      <yloc>383</yloc>
+      <xloc>486</xloc>
+      <yloc>363</yloc>
       </entry>
     <entry>
       <name>Ventas a DW</name>
@@ -302,8 +304,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>69</xloc>
-      <yloc>388</yloc>
+      <xloc>55</xloc>
+      <yloc>368</yloc>
       </entry>
     <entry>
       <name>Proceso Finalizado</name>
@@ -312,8 +314,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>68</xloc>
-      <yloc>252</yloc>
+      <xloc>54</xloc>
+      <yloc>264</yloc>
       </entry>
     <entry>
       <name>Productos al DW</name>
@@ -344,72 +346,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>890</xloc>
-      <yloc>367</yloc>
-      </entry>
-    <entry>
-      <name>Tipo Bebida al DW</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;tipoBebida_a_DW.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>207</xloc>
-      <yloc>251</yloc>
-      </entry>
-    <entry>
-      <name>Presentacion al DW</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;presentacion_a_DW.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>752</xloc>
-      <yloc>367</yloc>
+      <xloc>949</xloc>
+      <yloc>255</yloc>
       </entry>
     <entry>
       <name>Regiones al DW</name>
@@ -440,8 +378,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>885</xloc>
-      <yloc>249</yloc>
+      <xloc>816</xloc>
+      <yloc>248</yloc>
       </entry>
     <entry>
       <name>Antiguedad al DW</name>
@@ -472,8 +410,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>632</xloc>
-      <yloc>369</yloc>
+      <xloc>951</xloc>
+      <yloc>363</yloc>
       </entry>
     <entry>
       <name>Edad empleado al DW</name>
@@ -504,8 +442,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>357</xloc>
-      <yloc>378</yloc>
+      <xloc>665</xloc>
+      <yloc>365</yloc>
       </entry>
     <entry>
       <name>Edad Cliente al DW</name>
@@ -536,40 +474,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>518</xloc>
-      <yloc>375</yloc>
-      </entry>
-    <entry>
-      <name>Sexo al DW</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;sexo_a_DW.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>552</xloc>
-      <yloc>244</yloc>
+      <xloc>812</xloc>
+      <yloc>362</yloc>
       </entry>
     <entry>
       <name>Empleados al DW</name>
@@ -600,16 +506,16 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>764</xloc>
+      <xloc>691</xloc>
       <yloc>248</yloc>
       </entry>
     <entry>
-      <name>Tipo a staging tipo</name>
+      <name>Totales</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;tipoBebida_a_stagingtipo.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;montoTotal_a_StagingVentas.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -632,8 +538,40 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
-      <yloc>250</yloc>
+      <xloc>306</xloc>
+      <yloc>365</yloc>
+      </entry>
+    <entry>
+      <name>DescuentosVentas</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;descuento_a_StagingVentas.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>177</xloc>
+      <yloc>365</yloc>
       </entry>
   </entries>
   <hops>
@@ -674,33 +612,6 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Ventas a Staging Ventas</from>
-      <to>Ventas a DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Limpiar DW</from>
-      <to>Sexo al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Sexo al DW</from>
-      <to>Clientes al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Clientes al DW</from>
       <to>Empleados al DW</to>
       <from_nr>0</from_nr>
@@ -728,24 +639,6 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Productos al DW</from>
-      <to>Presentacion al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Presentacion al DW</from>
-      <to>Antiguedad al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Edad Cliente al DW</from>
       <to>Edad empleado al DW</to>
       <from_nr>0</from_nr>
@@ -764,35 +657,62 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Edad empleado al DW</from>
-      <to>Tipo a staging tipo</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Tipo a staging tipo</from>
-      <to>Tipo Bebida al DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Tipo Bebida al DW</from>
-      <to>Ventas a Staging Ventas</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Ventas a DW</from>
       <to>Proceso Finalizado</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Limpiar DW</from>
+      <to>Clientes al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Ventas a Staging Ventas</from>
+      <to>Totales</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Totales</from>
+      <to>DescuentosVentas</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DescuentosVentas</from>
+      <to>Ventas a DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Productos al DW</from>
+      <to>Antiguedad al DW</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Edad empleado al DW</from>
+      <to>Ventas a Staging Ventas</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

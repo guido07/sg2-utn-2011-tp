@@ -61,6 +61,8 @@
     </slaveservers>
     <clusterschemas>
     </clusterschemas>
+  <created_user/>
+  <created_date>2011&#47;08&#47;27 14:22:09.639</created_date>
   <modified_user>-</modified_user>
   <modified_date>2011&#47;08&#47;16 15:49:57.557</modified_date>
   </info>
@@ -87,6 +89,29 @@
       <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Conexion_History_Sales</name>
+    <server>localhost</server>
+    <type>MSSQL</type>
+    <access>Native</access>
+    <database>History_Sales</database>
+    <port>1433</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79a575d09bbbd5</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1433</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
@@ -142,7 +167,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Fuente Productos</from><to>Productos Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Ventas</from><to>Ventas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Detalle Ventas</from><to>Detalle Ventas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Feriados</from><to>Feriados Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Descuentos</from><to>Descuentos Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Precios</from><to>Precios Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Regiones</from><to>Regiones Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuentes Minoristas</from><to>Repara fechas erroneas</to><enabled>Y</enabled> </hop>  <hop> <from>Repara fechas erroneas</from><to>Minoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuentes Mayoristas</from><to>Repara fechas erroneas 2</to><enabled>Y</enabled> </hop>  <hop> <from>Repara fechas erroneas 2</from><to>Mayoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Empleados</from><to>Corregir fechas</to><enabled>Y</enabled> </hop>  <hop> <from>Corregir fechas</from><to>Empleados Staging</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Fuente Productos</from><to>Productos Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Ventas</from><to>Ventas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Detalle Ventas</from><to>Detalle Ventas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Feriados</from><to>Feriados Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Descuentos</from><to>Descuentos Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Precios</from><to>Precios Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Regiones</from><to>Regiones Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuentes Minoristas</from><to>Repara fechas erroneas</to><enabled>Y</enabled> </hop>  <hop> <from>Repara fechas erroneas</from><to>Minoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuentes Mayoristas</from><to>Repara fechas erroneas 2</to><enabled>Y</enabled> </hop>  <hop> <from>Repara fechas erroneas 2</from><to>Mayoristas Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente Empleados</from><to>Corregir fechas</to><enabled>Y</enabled> </hop>  <hop> <from>Corregir fechas</from><to>Empleados Staging</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente History</from><to>Ventas Staging 2</to><enabled>Y</enabled> </hop>  <hop> <from>Fuente History detalle</from><to>Detalle ventas staging 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Corregir fechas</name>
     <type>ScriptValueMod</type>
@@ -302,8 +327,8 @@ else fecha_ingreso = &quot;1800-01-01&quot;;</jsScript_script>
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>409</xloc>
-      <yloc>512</yloc>
+      <xloc>407</xloc>
+      <yloc>343</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -359,8 +384,8 @@ else fecha_ingreso = &quot;1800-01-01&quot;;</jsScript_script>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>560</xloc>
-      <yloc>707</yloc>
+      <xloc>554</xloc>
+      <yloc>664</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -408,8 +433,57 @@ else fecha_ingreso = &quot;1800-01-01&quot;;</jsScript_script>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>403</yloc>
+      <xloc>544</xloc>
+      <yloc>587</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Detalle ventas staging 2</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_TDCStaging</connection>
+    <schema/>
+    <table>detalle_ventas</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>cod_venta</column_name>
+          <stream_name>billing_id</stream_name>
+        </field>
+        <field>
+          <column_name>cod_producto</column_name>
+          <stream_name>product_id</stream_name>
+        </field>
+        <field>
+          <column_name>cantidad</column_name>
+          <stream_name>cantidad</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>552</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -473,8 +547,8 @@ else fecha_ingreso = &quot;1800-01-01&quot;;</jsScript_script>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>539</xloc>
-      <yloc>509</yloc>
+      <xloc>537</xloc>
+      <yloc>340</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -518,8 +592,8 @@ else fecha_ingreso = &quot;1800-01-01&quot;;</jsScript_script>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>554</xloc>
-      <yloc>621</yloc>
+      <xloc>550</xloc>
+      <yloc>423</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -545,8 +619,8 @@ FROM discounts
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>276</xloc>
-      <yloc>710</yloc>
+      <xloc>270</xloc>
+      <yloc>667</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -572,8 +646,8 @@ FROM billing_detail
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>270</xloc>
-      <yloc>405</yloc>
+      <xloc>274</xloc>
+      <yloc>589</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -604,8 +678,9 @@ FROM billing_detail
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>D:\Lulu\Lulita\Facultad\Sistemas de Gestion II\Datos\Employee.xls</name>
+      <name>D:\SG2\TP2\Datos\Employee.xls</name>
       <filemask/>
+      <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
@@ -711,10 +786,19 @@ FROM billing_detail
     <error_line_files_extension>error</error_line_files_extension>
     <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>JXL</spreadsheet_type>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>510</yloc>
+      <xloc>270</xloc>
+      <yloc>341</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -745,8 +829,9 @@ FROM billing_detail
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>D:\Lulu\Lulita\Facultad\Sistemas de Gestion II\Datos\Holidays.xls</name>
+      <name>D:\SG2\TP2\Datos\Holidays.xls</name>
       <filemask/>
+      <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
@@ -792,10 +877,80 @@ FROM billing_detail
     <error_line_files_extension>error</error_line_files_extension>
     <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>JXL</spreadsheet_type>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>267</xloc>
-      <yloc>628</yloc>
+      <xloc>263</xloc>
+      <yloc>430</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Fuente History</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_History_Sales</connection>
+    <sql>SELECT distinct billing_id, &quot;DATE&quot;, customer_id, employee_id, region
+FROM Billing
+where &quot;DATE&quot; is not null and employee_id is not null and employee_id &lt; 10000 and customer_id is not null
+order by billing_id
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>263</xloc>
+      <yloc>826</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Fuente History detalle</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_History_Sales</connection>
+    <sql>SELECT billing_id, product_id, sum(quantity) cantidad
+FROM Billing
+where product_id is not null and employee_id &lt; 10000
+group by billing_id,product_id
+order by billing_id
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>261</xloc>
+      <yloc>914</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -821,8 +976,8 @@ FROM prices
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>270</xloc>
-      <yloc>787</yloc>
+      <xloc>264</xloc>
+      <yloc>744</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -837,7 +992,7 @@ FROM prices
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>D:\Lulu\Lulita\Facultad\Sistemas de Gestion II\Datos\Products.txt</filename>
+    <filename>D:\SG2\TP2\Datos\Products.txt</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -887,7 +1042,7 @@ FROM prices
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>265</xloc>
-      <yloc>258</yloc>
+      <yloc>267</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -902,7 +1057,7 @@ FROM prices
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>D:\Lulu\Lulita\Facultad\Sistemas de Gestion II\Datos\Regions.txt</filename>
+    <filename>D:\SG2\TP2\Datos\Regions.txt</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -962,8 +1117,8 @@ FROM prices
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>274</xloc>
-      <yloc>853</yloc>
+      <xloc>260</xloc>
+      <yloc>203</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -989,8 +1144,8 @@ FROM billing
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>265</xloc>
-      <yloc>331</yloc>
+      <xloc>269</xloc>
+      <yloc>515</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1019,8 +1174,9 @@ FROM billing
     <rownum_field/>
     <encoding>UTF-8</encoding>
     <file>
-      <name>D:\Lulu\Lulita\Facultad\Sistemas de Gestion II\Datos\Customer_W.xml</name>
+      <name>D:\SG2\TP2\Datos\Customer_W.xml</name>
       <filemask/>
+      <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
@@ -1074,6 +1230,14 @@ FROM billing
     <IsAFile>N</IsAFile>
     <XmlField/>
     <prunePath/>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>245</xloc>
@@ -1106,8 +1270,9 @@ FROM billing
     <rownum_field/>
     <encoding>UTF-8</encoding>
     <file>
-      <name>D:\Lulu\Lulita\Facultad\Sistemas de Gestion II\Datos\Customer_R.xml</name>
+      <name>D:\SG2\TP2\Datos\Customer_R.xml</name>
       <filemask/>
+      <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
@@ -1161,6 +1326,14 @@ FROM billing
     <IsAFile>N</IsAFile>
     <XmlField/>
     <prunePath/>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>239</xloc>
@@ -1310,8 +1483,8 @@ FROM billing
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>559</xloc>
-      <yloc>793</yloc>
+      <xloc>553</xloc>
+      <yloc>750</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1360,7 +1533,7 @@ FROM billing
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>540</xloc>
-      <yloc>258</yloc>
+      <yloc>267</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1412,8 +1585,8 @@ FROM billing
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>560</xloc>
-      <yloc>854</yloc>
+      <xloc>546</xloc>
+      <yloc>204</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1667,8 +1840,65 @@ else fecha_cumple = &quot;1800-01-01&quot;;
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>543</xloc>
-      <yloc>336</yloc>
+      <xloc>547</xloc>
+      <yloc>520</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ventas Staging 2</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_TDCStaging</connection>
+    <schema/>
+    <table>ventas</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>cod_venta</column_name>
+          <stream_name>billing_id</stream_name>
+        </field>
+        <field>
+          <column_name>fecha</column_name>
+          <stream_name>DATE</stream_name>
+        </field>
+        <field>
+          <column_name>region</column_name>
+          <stream_name>region</stream_name>
+        </field>
+        <field>
+          <column_name>cod_cliente</column_name>
+          <stream_name>customer_id</stream_name>
+        </field>
+        <field>
+          <column_name>cod_empleado</column_name>
+          <stream_name>employee_id</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
+      <yloc>834</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

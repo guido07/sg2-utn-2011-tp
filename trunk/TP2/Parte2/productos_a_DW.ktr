@@ -118,7 +118,87 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Productos Staging</from><to>Productos DW</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Productos Staging</from><to>Convertir Tipo Bebida</to><enabled>Y</enabled> </hop>  <hop> <from>Convertir Tipo Bebida</from><to>Productos DW</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Convertir Tipo Bebida</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var tipoBebida;
+var cola = getOcuranceString(lower(descripcion),&apos;cola&apos;);
+var soda = getOcuranceString(lower(descripcion),&apos;soda&apos;);
+var beer = getOcuranceString(lower(descripcion),&apos;beer&apos;);
+var drink = getOcuranceString(lower(descripcion),&apos;drink&apos;);
+var juice = getOcuranceString(lower(descripcion),&apos;juice&apos;);
+
+if(cola&gt;0)
+tipoBebida=&apos;Cola&apos;;
+
+if(soda&gt;0)
+tipoBebida=&apos;Soda&apos;;
+
+if(beer&gt;0)
+tipoBebida=&apos;Beer&apos;;
+
+if(drink&gt;0)
+tipoBebida=&apos;Energy Drink&apos;;
+
+if(juice&gt;0)
+tipoBebida=&apos;Juice&apos;;
+
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>tipoBebida</name>
+        <rename>tipoBebida</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>cola</name>
+        <rename>cola</rename>
+        <type>Integer</type>
+        <length>9</length>
+        <precision>0</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>soda</name>
+        <rename>soda</rename>
+        <type>Integer</type>
+        <length>9</length>
+        <precision>0</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>beer</name>
+        <rename>beer</rename>
+        <type>Integer</type>
+        <length>9</length>
+        <precision>0</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>drink</name>
+        <rename>drink</rename>
+        <type>Integer</type>
+        <length>9</length>
+        <precision>0</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>juice</name>
+        <rename>juice</rename>
+        <type>Integer</type>
+        <length>9</length>
+        <precision>0</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>377</xloc>
+      <yloc>175</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Productos DW</name>
     <type>TableOutput</type>
@@ -155,11 +235,19 @@
           <column_name>detalle</column_name>
           <stream_name>descripcion</stream_name>
         </field>
+        <field>
+          <column_name>presentacion</column_name>
+          <stream_name>presentacion</stream_name>
+        </field>
+        <field>
+          <column_name>linea</column_name>
+          <stream_name>tipoBebida</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>413</xloc>
-      <yloc>182</yloc>
+      <xloc>543</xloc>
+      <yloc>173</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -175,9 +263,9 @@
            <schema_name/>
            </partitioning>
     <connection>Conexion_TDCStaging</connection>
-    <sql>select cod_producto,descripcion
+    <sql>select cod_producto,descripcion,presentacion
 from productos
-group by descripcion</sql>
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
