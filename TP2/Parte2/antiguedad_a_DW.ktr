@@ -60,6 +60,8 @@
     </slaveservers>
     <clusterschemas>
     </clusterschemas>
+  <created_user/>
+  <created_date>2011&#47;09&#47;01 12:15:53.626</created_date>
   <modified_user>-</modified_user>
   <modified_date>2011&#47;08&#47;23 14:52:57.638</modified_date>
   </info>
@@ -147,13 +149,13 @@
     <fields>
         <field>
           <column_name>anios</column_name>
-          <stream_name>Edad</stream_name>
+          <stream_name>Antiguedad</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>577</xloc>
-      <yloc>201</yloc>
+      <yloc>202</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -169,9 +171,10 @@
            <schema_name/>
            </partitioning>
     <connection>Conexion_TDCStaging</connection>
-    <sql>select distinct year(current_timestamp()) - year(fechaingreso) as Edad
-from empleados
-order by Edad</sql>
+    <sql>select distinct year(v.fecha) - year(e.fechaingreso) as Antiguedad
+from empleados e
+inner join ventas v on v.cod_empleado = e.cod_empleado
+order by Antiguedad</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -179,7 +182,7 @@ order by Edad</sql>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>125</xloc>
+      <xloc>263</xloc>
       <yloc>202</yloc>
       <draw>Y</draw>
       </GUI>

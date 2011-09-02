@@ -158,8 +158,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>464</xloc>
-      <yloc>159</yloc>
+      <xloc>472</xloc>
+      <yloc>148</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

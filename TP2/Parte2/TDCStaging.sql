@@ -2,18 +2,18 @@
 # ---------------------------------------
 # Host     : localhost
 # Port     : 3306
-# Database : TDCStaging
+# Database : tdcstaging
 
 
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP DATABASE IF EXISTS `TDCStaging`;
+DROP DATABASE IF EXISTS `tdcstaging`;
 
-CREATE DATABASE `TDCStaging`
+CREATE DATABASE `tdcstaging`
     CHARACTER SET 'latin1'
     COLLATE 'latin1_swedish_ci';
 
-USE `TDCStaging`;
+USE `tdcstaging`;
 
 #
 # Structure for the `descuentos` table : 
@@ -165,32 +165,6 @@ CREATE TABLE `saventas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Structure for the `stagingtipo` table : 
-#
-
-DROP TABLE IF EXISTS `stagingtipo`;
-
-CREATE TABLE `stagingtipo` (
-  `cod_tipo` int(11) NOT NULL AUTO_INCREMENT,
-  `desc_tipo` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`cod_tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=latin1;
-
-#
-# Structure for the `stagingventas` table : 
-#
-
-DROP TABLE IF EXISTS `stagingventas`;
-
-CREATE TABLE `stagingventas` (
-  `fecha` date NOT NULL,
-  `cod_cliente` int(11) NOT NULL,
-  `litrosEnvase` float(9,3) NOT NULL,
-  `cantidad` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fecha`,`cod_cliente`,`litrosEnvase`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-#
 # Structure for the `totales` table : 
 #
 
@@ -226,8 +200,8 @@ CREATE TABLE `ventas` (
   `region` varchar(45) DEFAULT NULL,
   `cod_sucursal` int(10) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
-  `cod_cliente` smallint(5) DEFAULT NULL,
-  `cod_empleado` smallint(5) DEFAULT NULL,
+  `cod_cliente` int(11) DEFAULT NULL,
+  `cod_empleado` int(11) DEFAULT NULL,
   PRIMARY KEY (`cod_venta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
