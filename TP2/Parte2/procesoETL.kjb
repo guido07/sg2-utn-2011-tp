@@ -112,13 +112,11 @@ delete from minoristas;
 delete from productos;
 delete from ventas;
 delete from detalle_ventas;
-delete from stagingVentas;
 delete from regiones;
 delete from descuentos;
 delete from precios;
 delete from feriados;
 delete from empleados;
-delete from stagingtipo;
 delete from totalVenta;
 delete from saVentas;
 delete from saDescuentos;
@@ -187,8 +185,6 @@ Se ha detenido el proceso.</bodymessage>
       <sql>delete from ventas;
 delete from clientes;
 delete from regiones;
-delete from presentacion;
-delete from tipobebida;
 delete from productos;
 delete from antiguedad;
 delete from edadempleado;
@@ -197,8 +193,6 @@ delete from empleado;
 ALTER TABLE edadempleado AUTO_INCREMENT =1;
 ALTER TABLE antiguedad AUTO_INCREMENT =1;
 ALTER TABLE edadesclientes AUTO_INCREMENT =1;
-ALTER TABLE tipobebida AUTO_INCREMENT =1;
-ALTER TABLE presentacion AUTO_INCREMENT =1;
 ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
