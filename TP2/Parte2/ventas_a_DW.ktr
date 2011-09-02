@@ -213,7 +213,7 @@
     <connection>Conexion_TDCStaging</connection>
     <sql>select  v.cod_cliente, v.cod_empleado, date(v.fecha) as Fecha, v.region, sav.cod_producto, year(v.fecha) - year(cli.fecha_nacimiento) as EdadCli,
 year(v.fecha) - year(e.fechanacimiento) as EdadEmp,year(v.fecha) - year(e.fechaingreso) as Antiguedad, 
-sum(sav.cantidad) as Cantidad, sum(sav.cantidad*sav.litros) as LitrosTotales, sum((1-(sad.por_descuento&#47;100)) * tv.total)) as MontoFinal
+sum(sav.cantidad) as Cantidad, sum(sav.cantidad*sav.litros) as LitrosTotales, sum((1-(sad.porc_descuento&#47;100)) * tv.total) as MontoFinal
 
 
 from ventas v
