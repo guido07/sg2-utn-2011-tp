@@ -2,18 +2,18 @@
 # ---------------------------------------
 # Host     : localhost
 # Port     : 3306
-# Database : TDC_DW
+# Database : tdc_dw
 
 
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP DATABASE IF EXISTS `TDC_DW`;
+DROP DATABASE IF EXISTS `tdc_dw`;
 
-CREATE DATABASE `TDC_DW`
+CREATE DATABASE `tdc_dw`
     CHARACTER SET 'latin1'
     COLLATE 'latin1_spanish_ci';
 
-USE `TDC_DW`;
+USE `tdc_dw`;
 
 #
 # Structure for the `antiguedad` table : 
@@ -75,18 +75,6 @@ CREATE TABLE `empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Structure for the `presentacion` table : 
-#
-
-DROP TABLE IF EXISTS `presentacion`;
-
-CREATE TABLE `presentacion` (
-  `cod_presentacion` int(11) NOT NULL AUTO_INCREMENT,
-  `presentacion` varchar(100) NOT NULL,
-  PRIMARY KEY (`cod_presentacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-#
 # Structure for the `productos` table : 
 #
 
@@ -112,25 +100,13 @@ CREATE TABLE `regiones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 #
-# Structure for the `tipobebida` table : 
-#
-
-DROP TABLE IF EXISTS `tipobebida`;
-
-CREATE TABLE `tipobebida` (
-  `cod_tipobebida` int(11) NOT NULL AUTO_INCREMENT,
-  `desc_tipo` varchar(100) NOT NULL,
-  PRIMARY KEY (`cod_tipobebida`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-#
 # Structure for the `ventas` table : 
 #
 
 DROP TABLE IF EXISTS `ventas`;
 
 CREATE TABLE `ventas` (
-  `cod_cliente` int(11) NOT NULL,
+  `cod_cliente` int(11) NOT NULL DEFAULT '0',
   `cod_producto` int(11) NOT NULL,
   `cod_empleado` int(11) NOT NULL,
   `cod_edad_empleado` int(11) NOT NULL,
@@ -148,8 +124,9 @@ CREATE TABLE `ventas` (
   KEY `FK_edademp_ventas` (`cod_edad_empleado`),
   KEY `FK_edadcli_ventas` (`cod_edad_cliente`),
   KEY `FK_antiguedad_ventas` (`cod_antiguedad`),
+  KEY `FK_clientes_ventas` (`cod_cliente`),
   CONSTRAINT `FK_antiguedad_ventas` FOREIGN KEY (`cod_antiguedad`) REFERENCES `antiguedad` (`anios`),
-  CONSTRAINT `FK_cliente_ventas` FOREIGN KEY (`cod_cliente`) REFERENCES `clientes` (`cod_cliente`),
+  CONSTRAINT `FK_clientes_ventas` FOREIGN KEY (`cod_cliente`) REFERENCES `clientes` (`cod_cliente`),
   CONSTRAINT `FK_edadcli_ventas` FOREIGN KEY (`cod_edad_cliente`) REFERENCES `edadesclientes` (`edad`),
   CONSTRAINT `FK_edademp_ventas` FOREIGN KEY (`cod_edad_empleado`) REFERENCES `edadempleado` (`edad`),
   CONSTRAINT `FK_empleados_ventas` FOREIGN KEY (`cod_empleado`) REFERENCES `empleado` (`cod_empleado`),
