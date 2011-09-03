@@ -266,8 +266,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>486</xloc>
-      <yloc>363</yloc>
+      <xloc>499</xloc>
+      <yloc>361</yloc>
       </entry>
     <entry>
       <name>Ventas a DW</name>
@@ -298,8 +298,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>55</xloc>
-      <yloc>368</yloc>
+      <xloc>54</xloc>
+      <yloc>360</yloc>
       </entry>
     <entry>
       <name>Proceso Finalizado</name>
@@ -309,7 +309,7 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>54</xloc>
-      <yloc>264</yloc>
+      <yloc>245</yloc>
       </entry>
     <entry>
       <name>Productos al DW</name>
@@ -340,8 +340,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>949</xloc>
-      <yloc>255</yloc>
+      <xloc>950</xloc>
+      <yloc>248</yloc>
       </entry>
     <entry>
       <name>Regiones al DW</name>
@@ -373,7 +373,7 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>816</xloc>
-      <yloc>248</yloc>
+      <yloc>244</yloc>
       </entry>
     <entry>
       <name>Antiguedad al DW</name>
@@ -436,8 +436,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>665</xloc>
-      <yloc>365</yloc>
+      <xloc>670</xloc>
+      <yloc>361</yloc>
       </entry>
     <entry>
       <name>Edad Cliente al DW</name>
@@ -500,8 +500,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>691</xloc>
-      <yloc>248</yloc>
+      <xloc>689</xloc>
+      <yloc>245</yloc>
       </entry>
     <entry>
       <name>Totales</name>
@@ -532,8 +532,8 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>306</xloc>
-      <yloc>365</yloc>
+      <xloc>331</xloc>
+      <yloc>361</yloc>
       </entry>
     <entry>
       <name>DescuentosVentas</name>
@@ -565,7 +565,7 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>177</xloc>
-      <yloc>365</yloc>
+      <yloc>361</yloc>
       </entry>
   </entries>
   <hops>
@@ -574,7 +574,7 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <to>Limpiar Staging</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
@@ -712,15 +712,6 @@ ALTER TABLE regiones AUTO_INCREMENT =1;</sql>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>Ventas a DW</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
