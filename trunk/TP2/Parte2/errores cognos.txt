@@ -2,7 +2,8 @@ REQ3: no entendemos cómo hacerlo
 
 REQ6: no abre edad, cant igules
 
-REQ8:no sabemos hacerlo
+REQ8:si lo abro por edad me muestra todos los montos dist, si lo abro por sexo me da el mismo
+monto, si abro las dos dim juntas se rompe
 
 REQ9: muestra todos los montos iguales
 
